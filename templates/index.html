@@ -1,19 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-{% include 'includes/head.html' with title="Home" %}
-<body>
-{% include 'includes/navbar.html' %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Resume App</h1>
-        </div>
-    </div>
-    <p>
-        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut autem blanditiis consectetur deleniti dolorem doloribus ducimus et eum expedita fugiat ipsam iusto, optio quaerat quas qui quis rem sapiente tempore.</span><span>Ab accusamus accusantium adipisci corporis deserunt dolor expedita omnis sequi voluptatem? Consequuntur explicabo omnis sequi. Architecto aut commodi deserunt est fuga id illo nihil quo rem similique, temporibus, ullam unde!</span><span>Ad alias aliquid aperiam assumenda consectetur consequatur culpa delectus dignissimos dolore dolores doloribus ea eveniet facere labore, laborum minima molestiae mollitia nihil nobis odit quaerat quas quasi qui sint, voluptates.</span><span>Accusamus commodi nostrum porro reprehenderit saepe sed, sint totam. Asperiores commodi dolores eligendi, exercitationem in, ipsam laudantium pariatur perspiciatis, possimus quae quaerat sed ut voluptatum. Dolorum ex iusto quasi rerum.</span><span>Dicta dolores eaque eius eveniet id illo nostrum, obcaecati omnis quas quo suscipit unde voluptates. Ad aliquam at eius est fugiat harum laboriosam, maxime mollitia neque sint temporibus totam vitae.</span><span>A dicta doloribus ducimus eos ex minima, modi numquam odio odit ratione totam vero voluptatum. Culpa ea magni non quidem recusandae tempore tenetur. Cum deserunt nulla officia pariatur repellendus rerum!</span><span>Accusantium adipisci alias aspernatur autem consequatur consequuntur dolore facere harum inventore neque porro, quia quod vel. A ab, aliquam atque dolores eligendi et eum excepturi facere ipsum non pariatur quibusdam.</span><span>Amet asperiores aspernatur culpa deserunt doloremque ducimus earum ex expedita explicabo facilis fuga illo iusto laudantium libero odio perferendis porro provident quia, ratione recusandae saepe similique suscipit vel velit voluptatem?</span><span>Adipisci at blanditiis consequatur, cum, debitis eius fugit itaque molestias mollitia nam numquam officiis repellendus repudiandae soluta unde voluptate voluptates. Aliquam dolorum est harum, laboriosam modi omnis qui reiciendis sit.</span><span>A accusantium asperiores aut corporis cupiditate distinctio fugit illum labore, laborum obcaecati odit possimus quidem reprehenderit velit, voluptates? A delectus eveniet excepturi illo in iure nulla rem rerum velit voluptatum!</span>
-    </p>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+{% extends 'layout.html'%}
 
-</body>
-</html>
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12">
+        <h1>Resume App</h1>
+
+    </div>
+</div>
+<p>
+    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut autem blanditiis consectetur deleniti dolorem doloribus ducimus et eum expedita fugiat ipsam iusto, optio quaerat quas qui quis rem sapiente tempore.</span><span>Ab accusamus accusantium adipisci corporis deserunt dolor expedita omnis sequi voluptatem? Consequuntur explicabo omnis sequi. Architecto aut commodi deserunt est fuga id illo nihil quo rem similique, temporibus, ullam unde!</span><span>Ad alias aliquid aperiam assumenda consectetur consequatur culpa delectus dignissimos dolore dolores doloribus ea eveniet facere labore, laborum minima molestiae mollitia nihil nobis odit quaerat quas quasi qui sint, voluptates.</span><span>Accusamus commodi nostrum porro reprehenderit saepe sed, sint totam. Asperiores commodi dolores eligendi, exercitationem in, ipsam laudantium pariatur perspiciatis, possimus quae quaerat sed ut voluptatum. Dolorum ex iusto quasi rerum.</span><span>Dicta dolores eaque eius eveniet id illo nostrum, obcaecati omnis quas quo suscipit unde voluptates. Ad aliquam at eius est fugiat harum laboriosam, maxime mollitia neque sint temporibus totam vitae.</span><span>A dicta doloribus ducimus eos ex minima, modi numquam odio odit ratione totam vero voluptatum. Culpa ea magni non quidem recusandae tempore tenetur. Cum deserunt nulla officia pariatur repellendus rerum!</span><span>Accusantium adipisci alias aspernatur autem consequatur consequuntur dolore facere harum inventore neque porro, quia quod vel. A ab, aliquam atque dolores eligendi et eum excepturi facere ipsum non pariatur quibusdam.</span><span>Amet asperiores aspernatur culpa deserunt doloremque ducimus earum ex expedita explicabo facilis fuga illo iusto laudantium libero odio perferendis porro provident quia, ratione recusandae saepe similique suscipit vel velit voluptatem?</span><span>Adipisci at blanditiis consequatur, cum, debitis eius fugit itaque molestias mollitia nam numquam officiis repellendus repudiandae soluta unde voluptate voluptates. Aliquam dolorum est harum, laboriosam modi omnis qui reiciendis sit.</span><span>A accusantium asperiores aut corporis cupiditate distinctio fugit illum labore, laborum obcaecati odit possimus quidem reprehenderit velit, voluptates? A delectus eveniet excepturi illo in iure nulla rem rerum velit voluptatum!</span>
+</p>
+
+{% endblock %}
+{% block extra_scripts %}
+    <script>
+        console.log("Hello World!");
+    </script>
+{% endblock %}
