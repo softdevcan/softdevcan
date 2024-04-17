@@ -29,6 +29,8 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = env('ALLOWED_HOSTS', cast=list)
 
+# Belirli bir portu ayarlayın:
+SERVER_PORT = 8003
 
 CSRF_TRUSTED_ORIGINS = env('CSRF_TRUSTED_ORIGINS', cast=list)
 
