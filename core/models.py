@@ -14,7 +14,7 @@ class AbstractModel(models.Model):
     )
     class Meta:
         abstract = True
-class GeneralSettings(AbstractModel):
+class GeneralSetting(AbstractModel):
     name = models.CharField(
         default='',
         max_length=254,

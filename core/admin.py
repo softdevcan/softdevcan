@@ -1,14 +1,14 @@
 from django.contrib import admin
-from core.models import GeneralSettings, ImageSetting, Skill, Experience, Education, SocialMedia, Document
+from core.models import GeneralSetting, ImageSetting, Skill, Experience, Education, SocialMedia, Document
 
 
-@admin.register(GeneralSettings)
-class GeneralSettingsAdmin(admin.ModelAdmin):
+@admin.register(GeneralSetting)
+class GeneralSettingAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'description', 'parameter', 'updated_date', 'created_date')
     search_fields = ('name', 'description', 'parameter')
     list_editable = ('description', 'parameter')
     class Meta:
-        model = GeneralSettings
+        model = GeneralSetting
 
 @admin.register(ImageSetting)
 class ImageSettingAdmin(admin.ModelAdmin):
