@@ -9,9 +9,9 @@
 
                     <div class="media">
                         <div class="d-flex">
-                            <img src="{% get_media_prefix %}img/personal.jpg" alt="">
+                            <img src="{{ home_banner_image.url }}" alt="" style="height: 50%; width: 50%;">
                         </div>
-                        <div class="media-body">
+                        <div class="media-body" style="margin-right: 555px;">
                             <div class="personal_text">
                                 <h6>Hello Everybody, i am</h6>
                                 <h3>{{ home_banner_name }}</h3>
