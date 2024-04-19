@@ -140,12 +140,16 @@ else:
     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
     AWS_DEFAULT_ACL = 'public-read'
-    AWS_S3_BUCKET_PARAMETERS = {
+    AWS_S3_OBJECT_PARAMETERS = {
         'Expires': 'Thu, 31 Dec 2099 23:55:55 GMT',
         'CacheControl': 'max-age=94608000',
     }
-    STATIC_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/static/'
 
+    STATICFILES_LOCATION = 'static'
+    AWS_LOCATION = 'static'
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
+    STATIC_URL = F'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
     STATIC_ROOT = STATIC_URL
 
     MEDIA_LOCATION = 'media'
