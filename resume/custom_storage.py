@@ -30,6 +30,6 @@ else:
         default_acl = 'public-read'
 
     class ImageStorage(S3Boto3Storage):
-        location = settings.IMAGES_SETTINGS_LOCATION
+        location = settings.IMAGE_SETTING_LOCATION
         file_overwrite = False
         default_acl = 'public-read'
