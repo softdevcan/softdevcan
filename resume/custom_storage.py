@@ -25,7 +25,7 @@ else:
         default_acl = 'public-read'
 
     class DocumentStorage(S3Boto3Storage):
-        location = settings.DOCUMENTS_LOCATION
+        location = settings.DOCUMENT_LOCATION
         file_overwrite = False
         default_acl = 'public-read'
 
