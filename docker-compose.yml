@@ -33,7 +33,7 @@ services:
       - app
     ports:
       - 80:80
-    voluemes:
+    volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - static-data:/var/www/html
 
