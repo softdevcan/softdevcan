@@ -1,7 +1,7 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
-from resume.custom_storage import DocumentStorage, ImageStorage
+from resume.custom_storage import DocumentStorage, ImageSettingStorage
 
 
 class AbstractModel(models.Model):
@@ -67,7 +67,7 @@ class ImageSetting(AbstractModel):
         verbose_name='Image',
         help_text='',
         blank=True,
-        upload_to= ImageStorage(),
+        upload_to= ImageSettingStorage(),
     )
 
     def __str__(self):

@@ -11,7 +11,7 @@ if settings.DEBUG:
         file_overwrite = False
         default_acl = 'public-read'
 
-    class ImageStorage(FileSystemStorage):
+    class ImageSettingStorage(FileSystemStorage):
         file_overwrite = False
         default_acl = 'public-read'
 
@@ -29,7 +29,7 @@ else:
         file_overwrite = False
         default_acl = 'public-read'
 
-    class ImageStorage(S3Boto3Storage):
+    class ImageSettingStorage(S3Boto3Storage):
         location = settings.IMAGE_SETTING_LOCATION
         file_overwrite = False
         default_acl = 'public-read'

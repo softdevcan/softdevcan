@@ -19,6 +19,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='imagesetting',
             name='file',
-            field=models.ImageField(blank=True, default='', upload_to=resume.custom_storage.ImageStorage(), verbose_name='Image'),
+            field=models.ImageField(blank=True, default='', upload_to=resume.custom_storage.ImageSettingStorage(), verbose_name='Image'),
         ),
     ]
