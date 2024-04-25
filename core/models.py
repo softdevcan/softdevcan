@@ -34,7 +34,7 @@ class GeneralSetting(AbstractModel):
     )
     parameter = models.CharField(
         default='',
-        max_length=254,
+        max_length=1024,
         blank=True,
         verbose_name='Parameter',
         help_text='Parameter of the setting',

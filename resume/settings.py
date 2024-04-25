@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'contact',
     'storages',
+    'blog',
 ]
 
 MIDDLEWARE = [
