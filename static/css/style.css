@@ -9,7 +9,7 @@ is the file you need to edit to change the look of the
 theme.
 ---------------------------------------------------- */
 /*=====================================================================
-@Template Name: Builder Construction 
+@Template Name: Builder Construction
 @Author: Rocky Ahmed
 @Developed By: Rocky Ahmed
 @Developer URL: http://rocky.wethemez.com
@@ -26,14 +26,14 @@ Table of Content:
 06/ breadcrumb
 07/ about
 08/ team
-09/ project 
-10/ price 
-11/ team 
-12/ blog 
-13/ video  
-14/ features  
-15/ career  
-16/ contact 
+09/ project
+10/ price
+11/ team
+12/ blog
+13/ video
+14/ features
+15/ career
+16/ contact
 17/ footer
 
 =====================================================================*/
@@ -233,7 +233,7 @@ button:focus {
     top: -70px;
     left: 0;
     right: 0;
-    background: #76ABAE;
+    background: #e76f51;
     transform: translateY(70px);
     transition: transform 500ms ease, background 500ms ease;
     -webkit-transition: transform 500ms ease, background 500ms ease;
@@ -301,9 +301,9 @@ button:focus {
 .home_banner_area {
   position: relative;
   z-index: 1;
-  background-image: -moz-linear-gradient(0deg, #766dff 0%, #766dff 100%);
-  background-image: -webkit-linear-gradient(0deg, #766dff 0%, #766dff 100%);
-  background-image: -ms-linear-gradient(0deg, #766dff 0%, #766dff 100%);
+  background-image: -moz-linear-gradient(0deg, #2a9d8f 0%, #e76f51 100%);
+  background-image: -webkit-linear-gradient(0deg, #2a9d8f 0%, #e76f51 100%);
+  background-image: -ms-linear-gradient(0deg, #2a9d8f 0%, #e76f51 100%);
   margin-bottom: 200px; }
   .home_banner_area .box_1620 {
     min-height: 700px;
@@ -378,9 +378,9 @@ button:focus {
   position: relative;
   z-index: 1;
   min-height: 350px;
-  background-image: -moz-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
-  background-image: -webkit-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
-  background-image: -ms-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
+  background-image: -moz-linear-gradient(0deg, #f4a261 0%, #f4a261 100%);
+  background-image: -webkit-linear-gradient(0deg, #f4a261 0%, #f4a261 100%);
+  background-image: -ms-linear-gradient(0deg, #f4a261 0%, #f4a261 100%);
   margin-bottom: 120px; }
   .banner_area .box_1620 {
     background: #fff;
@@ -2552,9 +2552,9 @@ h6 {
 /* My Tabs Area css
 ============================================================================================ */
 .mytabs_area {
-  background-image: -moz-linear-gradient(0deg, #4ac1f7 0%, #76ABAE 100%);
-  background-image: -webkit-linear-gradient(0deg, #4ac1f7 0%, #76ABAE 100%);
-  background-image: -ms-linear-gradient(0deg, #4ac1f7 0%, #76ABAE 100%); }
+  background-image: -moz-linear-gradient(0deg, #2a9d8f 0%, #264653 100%);
+  background-image: -webkit-linear-gradient(0deg, #2a9d8f 0%, #264653 100%);
+  background-image: -ms-linear-gradient(0deg, #2a9d8f 0%, #264653 100%); }
 
 .tabs_inner .nav.nav-tabs {
   display: block;
@@ -2899,7 +2899,7 @@ h6 {
 /* Footer Area css
 ============================================================================================ */
 .footer_area {
-  background: #000; }
+  background: #264653; }
 
 .f_title {
   margin-bottom: 35px; }
@@ -2984,7 +2984,7 @@ h6 {
   font-size: 14px;
   line-height: 24px;
   font-family: "Roboto", sans-serif;
-  color: #777777;
+  color: #ffffff;
   margin-bottom: 10px; }
 .social_widget .list li {
   margin-right: 17px;
