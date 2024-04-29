@@ -165,8 +165,6 @@ button:focus {
           background: #fff;
           box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.1); }
           @media (min-width: 991px) {
-            .header_area .navbar {
-              background: transparent;}
             .header_area .navbar .nav .nav-item.submenu ul {
               position: absolute;
               top: 120%;
@@ -213,8 +211,6 @@ button:focus {
               background: #766dff;
               color: #fff; }
         @media (min-width: 992px) {
-           .header_area .navbar {
-              background: transparent;}
           .header_area .navbar .nav .nav-item.submenu:hover ul {
             visibility: visible;
             opacity: 1;
@@ -242,6 +238,9 @@ button:focus {
     transition: transform 500ms ease, background 500ms ease;
     -webkit-transition: transform 500ms ease, background 500ms ease;
     box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.1); }
+    .header_area.navbar_fixed .main_menu .navbar {
+      background: transparent; /* Mobil cihazlarda navbar arka plan rengi */
+    }
     .header_area.navbar_fixed .main_menu .navbar .nav .nav-item .nav-link {
       line-height: 70px; }
 

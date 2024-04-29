@@ -94,8 +94,10 @@
         margin-top: 27px;
         margin-bottom: 23px;
     }
+
 	.header_area .navbar {
-		background: #000;
+		/*background: #e76f51;*/
+		background: rgba(231, 111, 81, 0.9);
 	}
     .navbar-toggler[aria-expanded="false"] span:nth-child(2) {
 		opacity: 1;
@@ -153,6 +155,9 @@
 		max-height: 340px;
 		overflow-y: scroll;
 	}
+	/*.navbar-collapse.show {*/
+    /*    background-color: #fff3cd; !* Açılan collapse menüsünün transparan arka plan rengi *!*/
+    /*}*/
 	.header_area .navbar .nav .nav-item.submenu ul .nav-item .nav-link {
 		padding: 0px 15px;
 	}
