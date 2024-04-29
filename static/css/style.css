@@ -164,7 +164,9 @@ button:focus {
           margin: 0px;
           background: #fff;
           box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.1); }
-          @media (min-width: 992px) {
+          @media (min-width: 991px) {
+            .header_area .navbar {
+              background: transparent;}
             .header_area .navbar .nav .nav-item.submenu ul {
               position: absolute;
               top: 120%;
@@ -211,6 +213,8 @@ button:focus {
               background: #766dff;
               color: #fff; }
         @media (min-width: 992px) {
+           .header_area .navbar {
+              background: transparent;}
           .header_area .navbar .nav .nav-item.submenu:hover ul {
             visibility: visible;
             opacity: 1;
@@ -2499,7 +2503,7 @@ h6 {
   border-radius: 5px; }
   .wel_item i {
     font-size: 24px;
-    background: linear-gradient(to right, #766dff 0%, #86e7ff 70%);
+    background: linear-gradient(to right, #86e7ff 0%, #766dff 70%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent; }
   .wel_item h4 {
