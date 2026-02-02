@@ -1,5 +1,5 @@
 {% extends 'layout.html' %}
-{% load static %}
+{% load static markdown_extras %}
 
 {% block title %}{{ post.title }} - {{ site_title }}{% endblock %}
 {% block meta_description %}{{ post.meta_description|default:post.excerpt|truncatewords:30 }}{% endblock %}
@@ -102,8 +102,8 @@
                     </div>
                     {% endif %}
 
-                    <div class="blog_content">
-                        {{ post.content|linebreaks }}
+                    <div class="blog_content markdown-content">
+                        {{ post.content|markdown }}
                     </div>
 
                     <div class="navigation_area mt-5">

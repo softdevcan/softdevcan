@@ -1,44 +1,92 @@
-<!-- templates/blog/blog_home.html -->
 {% extends 'layout.html' %}
 {% load static %}
 
-
 {% block banner_area %}
-
-    {% if posts %}
-        <section class="home_banner_area blog_banner">
-            <div class="banner_inner d-flex align-items-center">
-{#        <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>#}
-                <div class="container">
-                    <div class="blog_b_text text-center">
-                        {% with last_post=posts.first %}
-                            {% if last_post %}
-                                <h2>{{ last_post.title }}</h2>
-                                <p>{{ last_post.excerpt|default:last_post.content|truncatewords:30 }}</p>
-                                <a class="white_bg_btn" href="{% url 'blog_detail' last_post.slug %}">View More</a>
-                            {% endif %}
-                        {% endwith %}
+<section class="banner_area">
+    <div class="box_1620">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h2>Blog</h2>
+                    <div class="page_link">
+                        <a href="{% url 'index' %}">Home</a>
+                        <a href="{% url 'blog_home' %}">Blog</a>
                     </div>
                 </div>
             </div>
-        </section>
-    {% endif %}
-
-
+        </div>
+    </div>
+</section>
 {% endblock %}
 
 {% block content %}
-    <h1>Blog Home</h1>
-    {% if posts %}
-        {% for post in posts %}
-            <h2><a href="{% url 'blog_detail' post.slug %}">{{ post.title }}</a></h2>
-            <p>{{ post.excerpt|default:post.content|truncatewords:50 }}</p>
-            <small>By {{ post.author }} | {{ post.published_date|date:"M d, Y" }} | {{ post.view_count }} views</small>
-        {% endfor %}
-    {% else %}
-        <p>Henüz blog gönderisi bulunmamaktadır.</p>
-    {% endif %}
+<section class="blog_area p_120">
+    <div class="container">
+        <!-- Search Form -->
+        <div class="row mb-5">
+            <div class="col-lg-8 offset-lg-2">
+                <form method="get" action="{% url 'blog_home' %}">
+                    <div class="input-group input-group-lg">
+                        <input type="text" name="q" class="form-control" placeholder="Search blog posts..." value="{{ search_query }}" aria-label="Search">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fa fa-search"></i> Search
+                        </button>
+                    </div>
+                </form>
+                {% if search_query %}
+                <p class="text-muted mt-2">Showing results for: <strong>"{{ search_query }}"</strong></p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Blog Posts -->
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                {% if posts %}
+                    {% for post in posts %}
+                    <article class="blog_item mb-5">
+                        {% if post.image %}
+                        <div class="blog_item_img">
+                            <img class="card-img rounded-0 img-fluid" src="{{ post.image.url }}" alt="{{ post.title }}">
+                        </div>
+                        {% endif %}
+                        <div class="blog_details">
+                            <a href="{% url 'blog_detail' post.slug %}">
+                                <h2>{{ post.title }}</h2>
+                            </a>
+                            <p>{{ post.excerpt|default:post.content|truncatewords:50 }}</p>
+                            <ul class="blog-info-link list-inline">
+                                <li class="list-inline-item">
+                                    <i class="fa fa-user"></i> {{ post.author.get_full_name|default:post.author.username }}
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="fa fa-calendar"></i> {{ post.published_date|date:"M d, Y" }}
+                                </li>
+                                {% if post.category %}
+                                <li class="list-inline-item">
+                                    <i class="fa fa-folder"></i> {{ post.category.name }}
+                                </li>
+                                {% endif %}
+                                <li class="list-inline-item">
+                                    <i class="fa fa-eye"></i> {{ post.view_count }} views
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="fa fa-clock-o"></i> {{ post.reading_time }} min read
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                    {% endfor %}
+                {% else %}
+                    <div class="text-center">
+                        <p class="lead">{% if search_query %}No posts found matching your search.{% else %}No blog posts available yet.{% endif %}</p>
+                        {% if search_query %}
+                        <a href="{% url 'blog_home' %}" class="btn btn-primary">View All Posts</a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
-
-
-
