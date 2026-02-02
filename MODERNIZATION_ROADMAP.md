@@ -28,10 +28,10 @@ Bu doküman, Django portfolyo ve blog uygulamasının modernizasyon sürecini ad
 
 | # | İş | Açıklama | Durum |
 |---|-----|----------|-------|
-| 1.1 | Python 3.12 upgrade | Dockerfile güncelleme | ⬜ |
-| 1.2 | Django 5.x upgrade | Settings, middleware uyumluluğu | ⬜ |
-| 1.3 | Paket güncellemeleri | requirements.txt tüm paketler | ⬜ |
-| 1.4 | PostgreSQL 16 upgrade | docker-compose güncelleme | ⬜ |
+| 1.1 | Python 3.12 upgrade | Dockerfile güncelleme | ✅ |
+| 1.2 | Django 5.2 LTS upgrade | Settings STORAGES config, uyumluluk | ✅ |
+| 1.3 | Paket güncellemeleri | requirements.txt tüm paketler | ✅ |
+| 1.4 | PostgreSQL 16 upgrade | docker-compose güncelleme | ✅ |
 
 ---
 
@@ -143,6 +143,7 @@ Bu doküman, Django portfolyo ve blog uygulamasının modernizasyon sürecini ad
 
 | Tarih | Faz | Değişiklik |
 |-------|-----|------------|
+| 2026-02-02 | 1.x | Altyapı güncelleme tamamlandı (Python 3.12, Django 5.2 LTS, PostgreSQL 16, Nginx 1.27) |
 | 2026-02-02 | 0.3 | Blog template bug'ları düzeltildi |
 | 2026-02-02 | 0.1 | Aylak kod temizliği tamamlandı |
 | 2026-02-02 | 0.2 | Git repo düzenlendi |
