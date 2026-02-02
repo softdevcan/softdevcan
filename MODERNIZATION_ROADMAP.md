@@ -1,7 +1,7 @@
 # 🗺️ Django Portfolyo ve Blog Uygulaması - Modernizasyon Yol Haritası
 
 > Oluşturulma Tarihi: 2026-02-02
-> Proje: softdevcan (canakyildirim.com)
+> Proje: softdevcan (me.softdevcan.site)
 
 ---
 
@@ -85,6 +85,18 @@ Bu doküman, Django portfolyo ve blog uygulamasının modernizasyon sürecini ad
 
 ---
 
+## **Faz 5.5: Deployment Hazırlığı** *(VDS)*
+> *Sunucu deployment için gerekli ayarlar*
+
+| # | İş | Açıklama | Durum |
+|---|-----|----------|-------|
+| 5.5.1 | AWS S3 kaldırıldı | Local storage kullanımına geçildi | ✅ |
+| 5.5.2 | Docker volume'lar | static-files, media-files volume paylaşımı | ✅ |
+| 5.5.3 | Nginx static servis | Nginx doğrudan static/media servis ediyor | ✅ |
+| 5.5.4 | Domain güncelleme | me.softdevcan.site yapılandırması | ✅ |
+
+---
+
 ## **Faz 6: Performance** *(Optimizasyon)*
 > *Hız ve ölçeklenebilirlik*
 
@@ -94,7 +106,7 @@ Bu doküman, Django portfolyo ve blog uygulamasının modernizasyon sürecini ad
 | 6.2 | Database optimization | Index'ler, query optimization | ⬜ |
 | 6.3 | Static dosya optimizasyonu | Minification, CDN | ⬜ |
 | 6.4 | Image optimization | WebP, lazy loading | ⬜ |
-| 6.5 | Gzip compression | Nginx seviyesinde | ⬜ |
+| 6.5 | Gzip compression | Nginx seviyesinde | ✅ |
 
 ---
 
@@ -143,6 +155,7 @@ Bu doküman, Django portfolyo ve blog uygulamasının modernizasyon sürecini ad
 
 | Tarih | Faz | Değişiklik |
 |-------|-----|------------|
+| 2026-02-02 | 5.5.x | VDS deployment hazırlığı (AWS S3 → Local storage, Docker volumes, Nginx static servis) |
 | 2026-02-02 | 5.x | Faz 5 tamamlandı (Portfolio sistemi, RSS feed, XML Sitemap) |
 | 2026-02-02 | 5.1, 5.3 | Blog özellikleri eklendi (Markdown + Pygments kod highlight, Q-based search) |
 | 2026-02-02 | 4.x | Frontend modernize edildi (Bootstrap 5, Dark mode, Vanilla JS optimization) |
