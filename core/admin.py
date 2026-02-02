@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.models import GeneralSetting, ImageSetting, Skill, Experience, Education, SocialMedia, Document
+from core.models import GeneralSetting, ImageSetting, Skill, Experience, Education, SocialMedia, Document, ProjectCategory, Project
 
 
 @admin.register(GeneralSetting)
@@ -65,3 +65,43 @@ class DocumentAdmin(admin.ModelAdmin):
 
     class Meta:
         model = Document
+
+
+@admin.register(ProjectCategory)
+class ProjectCategoryAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'slug', 'order']
+    list_editable = ['name', 'order']
+    prepopulated_fields = {'slug': ('name',)}
+
+    class Meta:
+        model = ProjectCategory
+
+
+@admin.register(Project)
+class ProjectAdmin(admin.ModelAdmin):
+    list_display = ['id', 'title', 'category', 'is_featured', 'is_published', 'order', 'created_date']
+    list_filter = ['category', 'is_featured', 'is_published']
+    search_fields = ['title', 'description', 'technologies']
+    list_editable = ['is_featured', 'is_published', 'order']
+    prepopulated_fields = {'slug': ('title',)}
+
+    fieldsets = (
+        (None, {
+            'fields': ('title', 'slug', 'category')
+        }),
+        ('Content', {
+            'fields': ('description', 'content', 'featured_image')
+        }),
+        ('Links', {
+            'fields': ('github_url', 'live_url')
+        }),
+        ('Details', {
+            'fields': ('technologies',)
+        }),
+        ('Settings', {
+            'fields': ('is_featured', 'is_published', 'order')
+        }),
+    )
+
+    class Meta:
+        model = Project

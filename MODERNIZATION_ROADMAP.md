@@ -78,10 +78,10 @@ Bu doküman, Django portfolyo ve blog uygulamasının modernizasyon sürecini ad
 | # | İş | Açıklama | Durum |
 |---|-----|----------|-------|
 | 5.1 | Blog zenginleştirme | Markdown desteği, kod highlight | ✅ |
-| 5.2 | Proje/Portfolio bölümü | Silinen sayfaların modern versiyonu | ⬜ |
+| 5.2 | Proje/Portfolio bölümü | Silinen sayfaların modern versiyonu | ✅ |
 | 5.3 | Arama fonksiyonu | Site içi arama | ✅ |
-| 5.4 | RSS feed | Blog için RSS | ⬜ |
-| 5.5 | Sitemap | SEO için XML sitemap | ⬜ |
+| 5.4 | RSS feed | Blog için RSS | ✅ |
+| 5.5 | Sitemap | SEO için XML sitemap | ✅ |
 
 ---
 
@@ -143,6 +143,7 @@ Bu doküman, Django portfolyo ve blog uygulamasının modernizasyon sürecini ad
 
 | Tarih | Faz | Değişiklik |
 |-------|-----|------------|
+| 2026-02-02 | 5.x | Faz 5 tamamlandı (Portfolio sistemi, RSS feed, XML Sitemap) |
 | 2026-02-02 | 5.1, 5.3 | Blog özellikleri eklendi (Markdown + Pygments kod highlight, Q-based search) |
 | 2026-02-02 | 4.x | Frontend modernize edildi (Bootstrap 5, Dark mode, Vanilla JS optimization) |
 | 2026-02-02 | 3.x | Blog modeli modernize edildi (Category, Tag, SEO, slug-based URLs, view tracking) |

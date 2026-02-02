@@ -10,6 +10,9 @@
         <meta name="description" content="{% block meta_description %}{{ site_description }}{% endblock %}">
         <meta name="author" content="{% block meta_author %}Can AKYILDIRIM{% endblock %}">
 
+        <!-- RSS Feed -->
+        <link rel="alternate" type="application/rss+xml" title="Blog RSS Feed" href="{% url 'blog_feed' %}">
+
         {% block extra_head %}
         <!-- Extra head content from child templates -->
         {% endblock %}

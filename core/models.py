@@ -245,3 +245,84 @@ class Document(AbstractModel):
         verbose_name = 'Document'
         verbose_name_plural = 'Documents'
         ordering = ('order',)
+
+
+class ProjectCategory(AbstractModel):
+    """Category for portfolio projects"""
+    name = models.CharField(max_length=100, verbose_name='Category Name')
+    slug = models.SlugField(max_length=100, unique=True, blank=True)
+    order = models.IntegerField(default=0, verbose_name='Order')
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            from django.utils.text import slugify
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Project Category'
+        verbose_name_plural = 'Project Categories'
+        ordering = ('order', 'name')
+
+
+class Project(AbstractModel):
+    """Portfolio project model"""
+    title = models.CharField(max_length=200, verbose_name='Project Title')
+    slug = models.SlugField(max_length=200, unique=True, blank=True)
+    description = models.TextField(verbose_name='Short Description')
+    content = models.TextField(blank=True, verbose_name='Detailed Content (Markdown)')
+
+    # Media
+    featured_image = models.ImageField(
+        upload_to='projects/',
+        blank=True,
+        verbose_name='Featured Image'
+    )
+
+    # Categorization
+    category = models.ForeignKey(
+        ProjectCategory,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='projects'
+    )
+
+    # Links
+    github_url = models.URLField(blank=True, verbose_name='GitHub URL')
+    live_url = models.URLField(blank=True, verbose_name='Live Demo URL')
+
+    # Technologies used
+    technologies = models.CharField(
+        max_length=500,
+        blank=True,
+        help_text='Comma-separated list of technologies (e.g., Django, React, PostgreSQL)'
+    )
+
+    # Display settings
+    is_featured = models.BooleanField(default=False, verbose_name='Featured Project')
+    is_published = models.BooleanField(default=True, verbose_name='Published')
+    order = models.IntegerField(default=0, verbose_name='Display Order')
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            from django.utils.text import slugify
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+    def get_technologies_list(self):
+        """Return technologies as a list"""
+        if self.technologies:
+            return [tech.strip() for tech in self.technologies.split(',')]
+        return []
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Project'
+        verbose_name_plural = 'Projects'
+        ordering = ('order', '-created_date')

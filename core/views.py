@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from core.models import GeneralSetting, ImageSetting, Skill, Experience, Education, SocialMedia, Document
+from core.models import GeneralSetting, ImageSetting, Skill, Experience, Education, SocialMedia, Document, Project, ProjectCategory
 
 
 # Create your views here.
@@ -76,3 +76,45 @@ def index(request):
 def redirect_urls(request, slug):
     doc = get_object_or_404(Document, slug=slug)
     return redirect(doc.file.url)
+
+
+def portfolio(request):
+    """Display portfolio projects with optional category filter"""
+    projects = Project.objects.filter(is_published=True).select_related('category')
+    categories = ProjectCategory.objects.all()
+
+    # Category filter
+    category_slug = request.GET.get('category')
+    active_category = None
+    if category_slug:
+        active_category = get_object_or_404(ProjectCategory, slug=category_slug)
+        projects = projects.filter(category=active_category)
+
+    # Featured projects first
+    featured_projects = projects.filter(is_featured=True)
+    other_projects = projects.filter(is_featured=False)
+
+    context = {
+        'featured_projects': featured_projects,
+        'projects': other_projects,
+        'categories': categories,
+        'active_category': active_category,
+    }
+    return render(request, 'portfolio.html', context)
+
+
+def project_detail(request, slug):
+    """Display single project details"""
+    project = get_object_or_404(Project, slug=slug, is_published=True)
+
+    # Related projects from same category
+    related_projects = Project.objects.filter(
+        is_published=True,
+        category=project.category
+    ).exclude(pk=project.pk)[:3] if project.category else []
+
+    context = {
+        'project': project,
+        'related_projects': related_projects,
+    }
+    return render(request, 'project_detail.html', context)

@@ -1,0 +1,182 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}Portfolio - {{ site_title }}{% endblock %}
+{% block meta_description %}Explore my portfolio of software development projects including web applications, APIs, and more.{% endblock %}
+
+{% block banner_area %}
+<section class="banner_area">
+    <div class="box_1620">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h2>Portfolio</h2>
+                    <div class="page_link">
+                        <a href="{% url 'index' %}">Home</a>
+                        <a href="{% url 'portfolio' %}">Portfolio</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<section class="portfolio_area p_120">
+    <div class="container">
+        <!-- Category Filter -->
+        {% if categories %}
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <div class="btn-group flex-wrap" role="group">
+                    <a href="{% url 'portfolio' %}" class="btn {% if not active_category %}btn-primary{% else %}btn-outline-primary{% endif %}">
+                        All
+                    </a>
+                    {% for category in categories %}
+                    <a href="{% url 'portfolio' %}?category={{ category.slug }}"
+                       class="btn {% if active_category.slug == category.slug %}btn-primary{% else %}btn-outline-primary{% endif %}">
+                        {{ category.name }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Featured Projects -->
+        {% if featured_projects %}
+        <div class="row mb-5">
+            <div class="col-12">
+                <h3 class="mb-4">Featured Projects</h3>
+            </div>
+            {% for project in featured_projects %}
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100 shadow-sm project-card featured">
+                    {% if project.featured_image %}
+                    <img src="{{ project.featured_image.url }}" class="card-img-top" alt="{{ project.title }}" style="height: 250px; object-fit: cover;">
+                    {% else %}
+                    <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center" style="height: 250px;">
+                        <i class="fa fa-code fa-4x text-white-50"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <span class="badge bg-warning text-dark mb-2"><i class="fa fa-star"></i> Featured</span>
+                        {% if project.category %}
+                        <span class="badge bg-primary mb-2">{{ project.category.name }}</span>
+                        {% endif %}
+                        <h4 class="card-title">
+                            <a href="{% url 'project_detail' project.slug %}" class="text-decoration-none">{{ project.title }}</a>
+                        </h4>
+                        <p class="card-text">{{ project.description|truncatewords:30 }}</p>
+                        {% if project.technologies %}
+                        <div class="mb-3">
+                            {% for tech in project.get_technologies_list %}
+                            <span class="badge bg-light text-dark me-1">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'project_detail' project.slug %}" class="btn btn-sm btn-outline-primary">
+                                <i class="fa fa-eye"></i> Details
+                            </a>
+                            <div>
+                                {% if project.github_url %}
+                                <a href="{{ project.github_url }}" target="_blank" class="btn btn-sm btn-outline-dark">
+                                    <i class="fa fa-github"></i>
+                                </a>
+                                {% endif %}
+                                {% if project.live_url %}
+                                <a href="{{ project.live_url }}" target="_blank" class="btn btn-sm btn-outline-success">
+                                    <i class="fa fa-external-link"></i>
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- All Projects -->
+        <div class="row">
+            {% if projects or featured_projects %}
+                {% if projects %}
+                <div class="col-12">
+                    <h3 class="mb-4">{% if featured_projects %}Other Projects{% else %}Projects{% endif %}</h3>
+                </div>
+                {% endif %}
+                {% for project in projects %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm project-card">
+                        {% if project.featured_image %}
+                        <img src="{{ project.featured_image.url }}" class="card-img-top" alt="{{ project.title }}" style="height: 180px; object-fit: cover;">
+                        {% else %}
+                        <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center" style="height: 180px;">
+                            <i class="fa fa-code fa-3x text-white-50"></i>
+                        </div>
+                        {% endif %}
+                        <div class="card-body">
+                            {% if project.category %}
+                            <span class="badge bg-primary mb-2">{{ project.category.name }}</span>
+                            {% endif %}
+                            <h5 class="card-title">
+                                <a href="{% url 'project_detail' project.slug %}" class="text-decoration-none">{{ project.title }}</a>
+                            </h5>
+                            <p class="card-text small">{{ project.description|truncatewords:20 }}</p>
+                            {% if project.technologies %}
+                            <div class="mb-2">
+                                {% for tech in project.get_technologies_list|slice:":4" %}
+                                <span class="badge bg-light text-dark small">{{ tech }}</span>
+                                {% endfor %}
+                                {% if project.get_technologies_list|length > 4 %}
+                                <span class="badge bg-light text-dark small">+{{ project.get_technologies_list|length|add:"-4" }}</span>
+                                {% endif %}
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="{% url 'project_detail' project.slug %}" class="btn btn-sm btn-outline-primary">View</a>
+                                <div>
+                                    {% if project.github_url %}
+                                    <a href="{{ project.github_url }}" target="_blank" class="text-dark"><i class="fa fa-github"></i></a>
+                                    {% endif %}
+                                    {% if project.live_url %}
+                                    <a href="{{ project.live_url }}" target="_blank" class="text-success ms-2"><i class="fa fa-external-link"></i></a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-12 text-center">
+                    <p class="lead">No projects found{% if active_category %} in this category{% endif %}.</p>
+                    {% if active_category %}
+                    <a href="{% url 'portfolio' %}" class="btn btn-primary">View All Projects</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<style>
+.project-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+.project-card.featured {
+    border: 2px solid var(--bs-warning);
+}
+</style>
+{% endblock %}

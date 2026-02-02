@@ -1,0 +1,160 @@
+{% extends 'layout.html' %}
+{% load static markdown_extras %}
+
+{% block title %}{{ project.title }} - {{ site_title }}{% endblock %}
+{% block meta_description %}{{ project.description|truncatewords:30 }}{% endblock %}
+{% block meta_keywords %}{{ project.technologies }}, portfolio, project{% endblock %}
+
+{% block extra_head %}
+<!-- Open Graph -->
+<meta property="og:title" content="{{ project.title }}">
+<meta property="og:description" content="{{ project.description|truncatewords:30 }}">
+<meta property="og:type" content="article">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+{% if project.featured_image %}
+<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ project.featured_image.url }}">
+{% endif %}
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ project.title }}">
+<meta name="twitter:description" content="{{ project.description|truncatewords:30 }}">
+{% if project.featured_image %}
+<meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{{ project.featured_image.url }}">
+{% endif %}
+{% endblock %}
+
+{% block banner_area %}
+<section class="banner_area">
+    <div class="box_1620">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h2>{{ project.title }}</h2>
+                    <div class="page_link">
+                        <a href="{% url 'index' %}">Home</a>
+                        <a href="{% url 'portfolio' %}">Portfolio</a>
+                        <a href="{% url 'project_detail' project.slug %}">{{ project.title|truncatewords:3 }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<section class="project_detail_area p_120">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Featured Image -->
+                {% if project.featured_image %}
+                <div class="project_image mb-4">
+                    <img src="{{ project.featured_image.url }}" class="img-fluid rounded shadow" alt="{{ project.title }}">
+                </div>
+                {% endif %}
+
+                <!-- Description -->
+                <div class="project_description mb-4">
+                    <p class="lead">{{ project.description }}</p>
+                </div>
+
+                <!-- Content (Markdown) -->
+                {% if project.content %}
+                <div class="project_content markdown-content">
+                    {{ project.content|markdown }}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="col-lg-4">
+                <!-- Project Info Card -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="fa fa-info-circle"></i> Project Info</h5>
+                    </div>
+                    <div class="card-body">
+                        {% if project.category %}
+                        <div class="mb-3">
+                            <strong><i class="fa fa-folder"></i> Category:</strong>
+                            <a href="{% url 'portfolio' %}?category={{ project.category.slug }}">{{ project.category.name }}</a>
+                        </div>
+                        {% endif %}
+
+                        {% if project.technologies %}
+                        <div class="mb-3">
+                            <strong><i class="fa fa-cogs"></i> Technologies:</strong>
+                            <div class="mt-2">
+                                {% for tech in project.get_technologies_list %}
+                                <span class="badge bg-light text-dark mb-1">{{ tech }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <div class="mb-3">
+                            <strong><i class="fa fa-calendar"></i> Created:</strong>
+                            {{ project.created_date|date:"M d, Y" }}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Links Card -->
+                {% if project.github_url or project.live_url %}
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0"><i class="fa fa-link"></i> Links</h5>
+                    </div>
+                    <div class="card-body">
+                        {% if project.github_url %}
+                        <a href="{{ project.github_url }}" target="_blank" class="btn btn-outline-dark w-100 mb-2">
+                            <i class="fa fa-github"></i> View on GitHub
+                        </a>
+                        {% endif %}
+                        {% if project.live_url %}
+                        <a href="{{ project.live_url }}" target="_blank" class="btn btn-outline-success w-100">
+                            <i class="fa fa-external-link"></i> Live Demo
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Back Button -->
+                <a href="{% url 'portfolio' %}" class="btn btn-primary w-100">
+                    <i class="fa fa-arrow-left"></i> Back to Portfolio
+                </a>
+            </div>
+        </div>
+
+        <!-- Related Projects -->
+        {% if related_projects %}
+        <div class="row mt-5">
+            <div class="col-12">
+                <h3 class="mb-4">Related Projects</h3>
+            </div>
+            {% for related in related_projects %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    {% if related.featured_image %}
+                    <img src="{{ related.featured_image.url }}" class="card-img-top" alt="{{ related.title }}" style="height: 150px; object-fit: cover;">
+                    {% else %}
+                    <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center" style="height: 150px;">
+                        <i class="fa fa-code fa-2x text-white-50"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{% url 'project_detail' related.slug %}" class="text-decoration-none">{{ related.title }}</a>
+                        </h5>
+                        <p class="card-text small">{{ related.description|truncatewords:15 }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
