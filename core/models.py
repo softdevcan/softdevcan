@@ -1,8 +1,6 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
-from resume.custom_storage import DocumentStorage, ImageSettingStorage
-
 
 class AbstractModel(models.Model):
     updated_date = models.DateTimeField(
@@ -67,7 +65,7 @@ class ImageSetting(AbstractModel):
         verbose_name='Image',
         help_text='',
         blank=True,
-        upload_to= ImageSettingStorage(),
+        upload_to='image_settings/',
     )
 
     def __str__(self):
@@ -235,7 +233,7 @@ class Document(AbstractModel):
         verbose_name='File',
         help_text='',
         blank=True,
-        storage= DocumentStorage(),
+        upload_to='documents/',
     )
 
     def __str__(self):

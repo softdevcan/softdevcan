@@ -2,27 +2,30 @@ version: "3.8"
 services:
   postgres:
     image: postgres:16-alpine
+    restart: unless-stopped
     env_file:
       - resume/docker.env
-    ports:
-      - "5432:5432"
     volumes:
       - "postgresql-data:/var/lib/postgresql/data"
     command: -p 5432
+
   app:
     container_name: app_resume
     hostname: app_resume
     build:
       context: .
       dockerfile: Dockerfile
+    restart: unless-stopped
     depends_on:
       - postgres
     env_file:
       - resume/docker.env
     volumes:
       - .:/srv/app
-    ports:
-      - "0.0.0.0:8000:8000"
+      - static-files:/srv/app/staticfiles
+      - media-files:/srv/app/media
+    expose:
+      - "8000"
     command: gunicorn resume.wsgi:application --bind 0.0.0.0:8000
 
   nginx:
@@ -32,9 +35,13 @@ services:
     restart: unless-stopped
     depends_on:
       - app
+    volumes:
+      - static-files:/srv/app/staticfiles:ro
+      - media-files:/srv/app/media:ro
     ports:
-      - 80:80
-
+      - "80:80"
 
 volumes:
   postgresql-data:
+  static-files:
+  media-files:
