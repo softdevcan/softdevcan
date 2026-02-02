@@ -64,11 +64,11 @@ Bu doküman, Django portfolyo ve blog uygulamasının modernizasyon sürecini ad
 
 | # | İş | Açıklama | Durum |
 |---|-----|----------|-------|
-| 4.1 | Bootstrap 5 veya Tailwind | CSS framework upgrade | ⬜ |
-| 4.2 | Template yapısı düzenleme | Component-based yapı | ⬜ |
-| 4.3 | Dark mode desteği | Tema sistemi | ⬜ |
-| 4.4 | Responsive iyileştirmeler | Mobile-first yaklaşım | ⬜ |
-| 4.5 | Modern JS (Alpine.js/HTMX) | jQuery bağımlılığını azaltma | ⬜ |
+| 4.1 | Bootstrap 5 upgrade | Bootstrap 4 → 5.3 CDN, jQuery opsiyonel | ✅ |
+| 4.2 | Template yapısı düzenleme | SEO blocks, clean structure | ✅ |
+| 4.3 | Dark mode desteği | CSS variables, localStorage, toggle button | ✅ |
+| 4.4 | Responsive iyileştirmeler | Bootstrap 5 responsive utilities | ✅ |
+| 4.5 | Modern JS optimization | Vanilla JS, reduced vendor dependencies | ✅ |
 
 ---
 
@@ -143,6 +143,7 @@ Bu doküman, Django portfolyo ve blog uygulamasının modernizasyon sürecini ad
 
 | Tarih | Faz | Değişiklik |
 |-------|-----|------------|
+| 2026-02-02 | 4.x | Frontend modernize edildi (Bootstrap 5, Dark mode, Vanilla JS optimization) |
 | 2026-02-02 | 3.x | Blog modeli modernize edildi (Category, Tag, SEO, slug-based URLs, view tracking) |
 | 2026-02-02 | 2.x | Güvenlik katmanları eklendi (Cloudflare SSL, Nginx hardening, Django security, SECURITY.md) |
 | 2026-02-02 | 1.x | Altyapı güncelleme tamamlandı (Python 3.12, Django 5.2 LTS, PostgreSQL 16, Nginx 1.27) |
