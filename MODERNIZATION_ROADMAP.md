@@ -40,10 +40,10 @@ Bu doküman, Django portfolyo ve blog uygulamasının modernizasyon sürecini ad
 
 | # | İş | Açıklama | Durum |
 |---|-----|----------|-------|
-| 2.1 | HTTPS/SSL kurulumu | Let's Encrypt + Certbot | ⬜ |
-| 2.2 | Nginx hardening | Security headers, rate limiting | ⬜ |
-| 2.3 | Django security settings | CSRF, HSTS, Secure cookies | ⬜ |
-| 2.4 | Environment secrets | Secret management iyileştirme | ⬜ |
+| 2.1 | HTTPS/SSL kurulumu | Cloudflare SSL/TLS yapılandırması | ✅ |
+| 2.2 | Nginx hardening | Security headers, rate limiting, Cloudflare IP | ✅ |
+| 2.3 | Django security settings | CSRF, HSTS, Secure cookies, password validation | ✅ |
+| 2.4 | Environment secrets | .env template güncelleme, SECURITY.md | ✅ |
 
 ---
 
@@ -143,6 +143,7 @@ Bu doküman, Django portfolyo ve blog uygulamasının modernizasyon sürecini ad
 
 | Tarih | Faz | Değişiklik |
 |-------|-----|------------|
+| 2026-02-02 | 2.x | Güvenlik katmanları eklendi (Cloudflare SSL, Nginx hardening, Django security, SECURITY.md) |
 | 2026-02-02 | 1.x | Altyapı güncelleme tamamlandı (Python 3.12, Django 5.2 LTS, PostgreSQL 16, Nginx 1.27) |
 | 2026-02-02 | 0.3 | Blog template bug'ları düzeltildi |
 | 2026-02-02 | 0.1 | Aylak kod temizliği tamamlandı |
