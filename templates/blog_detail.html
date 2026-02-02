@@ -1,17 +1,65 @@
-<!-- templates/blog/blog_detail.html -->
+{% extends 'layout.html' %}
+{% load static %}
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ post.title }}</title>
-</head>
-<body>
-    <h1>{{ post.title }}</h1>
-    <p><strong>Yazar:</strong> {{ post.author }}</p>
-    <p><strong>Oluşturma Tarihi:</strong> {{ post.created_at }}</p>
-    <p><strong>Güncellenme Tarihi:</strong> {{ post.updated_at }}</p>
-    <p>{{ post.content }}</p>
+{% block banner_area %}
+<section class="banner_area">
+    <div class="box_1620">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h2>{{ post.title }}</h2>
+                    <div class="page_link">
+                        <a href="{% url 'index' %}">Home</a>
+                        <a href="{% url 'blog_home' %}">Blog</a>
+                        <a href="#">{{ post.title|truncatewords:3 }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
 
-    <a href="{% url 'blog_home' %}">Tüm Gönderilere Geri Dön</a>
-</body>
-</html>
+{% block content %}
+<section class="blog_area p_120">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="blog_details">
+                    {% if post.image %}
+                    <div class="blog_image mb-4">
+                        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid">
+                    </div>
+                    {% endif %}
+
+                    <h2>{{ post.title }}</h2>
+
+                    <ul class="blog_meta list-inline mb-4">
+                        <li class="list-inline-item">
+                            <i class="fa fa-user"></i> {{ post.author }}
+                        </li>
+                        <li class="list-inline-item">
+                            <i class="fa fa-calendar"></i> {{ post.created_date|date:"d M Y" }}
+                        </li>
+                        {% if post.content_type %}
+                        <li class="list-inline-item">
+                            <i class="fa fa-tag"></i> {{ post.get_content_type_display }}
+                        </li>
+                        {% endif %}
+                    </ul>
+
+                    <div class="blog_content">
+                        {{ post.content|linebreaks }}
+                    </div>
+
+                    <div class="navigation_area mt-5">
+                        <a href="{% url 'blog_home' %}" class="btn submit_btn">
+                            <i class="fa fa-arrow-left"></i> Back to Blog
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
