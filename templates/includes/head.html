@@ -5,10 +5,15 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="icon" href="{{ site_favicon.url }}" type="image/png">
-        <title>{{ site_title }}</title>
-        <meta name="keywords" content="{{ site_keywords }}">
-        <meta name="description" content="{{ site_description }}">
-        <meta name="author" content="Can AKYILDIRIM">
+        <title>{% block title %}{{ site_title }}{% endblock %}</title>
+        <meta name="keywords" content="{% block meta_keywords %}{{ site_keywords }}{% endblock %}">
+        <meta name="description" content="{% block meta_description %}{{ site_description }}{% endblock %}">
+        <meta name="author" content="{% block meta_author %}Can AKYILDIRIM{% endblock %}">
+
+        {% block extra_head %}
+        <!-- Extra head content from child templates -->
+        {% endblock %}
+
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
         <link rel="stylesheet" href="{% static 'vendors/linericon/style.css' %}">

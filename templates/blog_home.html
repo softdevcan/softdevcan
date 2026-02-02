@@ -14,8 +14,8 @@
                         {% with last_post=posts.first %}
                             {% if last_post %}
                                 <h2>{{ last_post.title }}</h2>
-                                <p>{{ last_post.content|truncatewords:30 }}</p>
-                                <a class="white_bg_btn" href="{% url 'blog_detail' last_post.pk %}">View More</a>
+                                <p>{{ last_post.excerpt|default:last_post.content|truncatewords:30 }}</p>
+                                <a class="white_bg_btn" href="{% url 'blog_detail' last_post.slug %}">View More</a>
                             {% endif %}
                         {% endwith %}
                     </div>
@@ -31,8 +31,9 @@
     <h1>Blog Home</h1>
     {% if posts %}
         {% for post in posts %}
-            <h2><a href="{% url 'blog_detail' post.pk %}">{{ post.title }}</a></h2>
-            <p>{{ post.content }}</p>
+            <h2><a href="{% url 'blog_detail' post.slug %}">{{ post.title }}</a></h2>
+            <p>{{ post.excerpt|default:post.content|truncatewords:50 }}</p>
+            <small>By {{ post.author }} | {{ post.published_date|date:"M d, Y" }} | {{ post.view_count }} views</small>
         {% endfor %}
     {% else %}
         <p>Henüz blog gönderisi bulunmamaktadır.</p>
