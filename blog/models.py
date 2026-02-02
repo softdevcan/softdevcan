@@ -5,6 +5,7 @@ class AbstractModel(models.Model):
     updated_date = models.DateTimeField(auto_now=True, blank=True, verbose_name='Updated Date')
     created_date = models.DateTimeField(auto_now_add=True, blank=True, verbose_name='Created Date')
 
+
     class Meta:
         abstract = True
         app_label = 'blog'  # Uygulama adını buraya ekleyin

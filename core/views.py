@@ -56,12 +56,17 @@ def layout(request):
     return context
 def index(request):
     # Skills
-    skills = Skill.objects.all().order_by('order')
+    backend_skills = Skill.objects.filter(skill_type='backend')
+    frontend_skills = Skill.objects.filter(skill_type='frontend')
+    devops_skills = Skill.objects.filter(skill_type='devops')
+    other_skills = Skill.objects.filter(skill_type='other')
     experiences = Experience.objects.all().order_by('-start_date')
     educations = Education.objects.all().order_by('-start_date')
     context = {
-
-        'skills': skills,
+        'backend_skills': backend_skills,
+        'frontend_skills': frontend_skills,
+        'devops_skills': devops_skills,
+        'other_skills': other_skills,
         'experiences': experiences,
         'educations': educations,
 

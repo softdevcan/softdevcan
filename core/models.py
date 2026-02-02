@@ -95,6 +95,13 @@ class Skill(AbstractModel):
         verbose_name='Percentage',
         validators=[MinValueValidator(0), MaxValueValidator(100)],
     )
+    SKILL_TYPE_CHOICES = (
+        ('backend', 'Backend'),
+        ('frontend', 'Frontend'),
+        ('devops', 'DevOps'),
+        ('other', 'Other'),
+    )
+    skill_type = models.CharField(max_length=20, choices=SKILL_TYPE_CHOICES, default='backend')
 
     def __str__(self):
         return f'Skill: {self.name}'
