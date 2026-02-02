@@ -16,9 +16,9 @@ Bu doküman, Django portfolyo ve blog uygulamasının modernizasyon sürecini ad
 
 | # | İş | Açıklama | Durum |
 |---|-----|----------|-------|
-| 0.1 | Aylak kod temizliği | Kullanılmayan template'ler, Streamlit referansları | ⬜ |
-| 0.2 | Git repo düzenleme | .gitignore güncellemesi, branch stratejisi | ⬜ |
-| 0.3 | Bug fix'ler | blog_detail.html layout sorunu, Nginx Dockerfile | ⬜ |
+| 0.1 | Aylak kod temizliği | Kullanılmayan template'ler, Streamlit referansları | ✅ |
+| 0.2 | Git repo düzenleme | .gitignore güncellemesi, branch stratejisi | ✅ |
+| 0.3 | Bug fix'ler | blog_detail.html layout sorunu, blog_home URL fix | ✅ |
 | 0.4 | Mevcut testlerin yazılması | Mevcut işlevselliği korumak için temel testler | ⬜ |
 
 ---
@@ -143,4 +143,7 @@ Bu doküman, Django portfolyo ve blog uygulamasının modernizasyon sürecini ad
 
 | Tarih | Faz | Değişiklik |
 |-------|-----|------------|
+| 2026-02-02 | 0.3 | Blog template bug'ları düzeltildi |
+| 2026-02-02 | 0.1 | Aylak kod temizliği tamamlandı |
+| 2026-02-02 | 0.2 | Git repo düzenlendi |
 | 2026-02-02 | - | Yol haritası oluşturuldu |
