@@ -2520,8 +2520,15 @@ h6 {
 
 .tools_expert {
   padding: 20px 0px 0px 0px; }
+.tools_expert .skill_main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
   .tools_expert .skill_main .skill_item {
-    margin-bottom: 18px; }
+    flex: 1 1 30%;
+    box-sizing: border-box;
+    margin: 1%; }
     .tools_expert .skill_main .skill_item:last-child {
       margin-bottom: 0px; }
     .tools_expert .skill_main .skill_item h4 {
@@ -3009,6 +3016,13 @@ h6 {
   .copy_right_text p a {
     color: #766dff; }
 
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
 /* End Footer Area css
 ============================================================================================ */
 /*---------------------------------------------------- */

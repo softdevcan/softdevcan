@@ -6825,8 +6825,8 @@ button.bg-dark:hover {
 }
 
 .flex-fill {
-    -ms-flex: 1 1 auto !important;
-    flex: 1 1 auto !important
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto
 }
 
 .flex-grow-0 {
