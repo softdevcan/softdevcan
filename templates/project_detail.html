@@ -25,18 +25,16 @@
 {% endblock %}
 
 {% block banner_area %}
-<section class="banner_area">
-    <div class="box_1620">
-        <div class="banner_inner d-flex align-items-center">
-            <div class="container">
-                <div class="banner_content text-center">
-                    <h2>{{ project.title }}</h2>
-                    <div class="page_link">
-                        <a href="{% url 'index' %}">Home</a>
-                        <a href="{% url 'portfolio' %}">Portfolio</a>
-                        <a href="{% url 'project_detail' project.slug %}">{{ project.title|truncatewords:3 }}</a>
-                    </div>
-                </div>
+<section class="banner-modern">
+    <div class="container">
+        <div class="banner-modern__content">
+            <h1 class="banner-modern__title">{{ project.title }}</h1>
+            <div class="banner-modern__breadcrumb">
+                <a href="{% url 'index' %}">Home</a>
+                <span class="separator">/</span>
+                <a href="{% url 'portfolio' %}">Portfolio</a>
+                <span class="separator">/</span>
+                <span class="current">{{ project.title|truncatewords:3 }}</span>
             </div>
         </div>
     </div>
@@ -44,25 +42,26 @@
 {% endblock %}
 
 {% block content %}
-<section class="project_detail_area p_120">
+<section class="py-5">
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
                 <!-- Featured Image -->
                 {% if project.featured_image %}
-                <div class="project_image mb-4">
-                    <img src="{{ project.featured_image.url }}" class="img-fluid rounded shadow" alt="{{ project.title }}" loading="lazy">
+                <div class="mb-4">
+                    <img src="{{ project.featured_image.url }}" class="img-fluid" alt="{{ project.title }}" loading="lazy"
+                         style="border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
                 </div>
                 {% endif %}
 
                 <!-- Description -->
-                <div class="project_description mb-4">
-                    <p class="lead">{{ project.description }}</p>
+                <div class="mb-4">
+                    <p class="lead" style="color: var(--text-body); line-height: 1.8;">{{ project.description }}</p>
                 </div>
 
                 <!-- Content (Markdown) -->
                 {% if project.content %}
-                <div class="project_content markdown-content">
+                <div class="markdown-content">
                     {{ project.content|markdown }}
                 </div>
                 {% endif %}
@@ -70,31 +69,31 @@
 
             <div class="col-lg-4">
                 <!-- Project Info Card -->
-                <div class="card shadow-sm mb-4">
-                    <div class="card-header bg-primary text-white">
-                        <h5 class="mb-0"><i class="fa fa-info-circle"></i> Project Info</h5>
+                <div class="card mb-4" style="border: none; box-shadow: var(--shadow-sm); border-radius: var(--radius-md); overflow: hidden;">
+                    <div class="card-header" style="background: var(--brand-gradient); color: #fff; border: none;">
+                        <h5 class="mb-0"><i class="fa-solid fa-circle-info me-2"></i>Project Info</h5>
                     </div>
                     <div class="card-body">
                         {% if project.category %}
                         <div class="mb-3">
-                            <strong><i class="fa fa-folder"></i> Category:</strong>
-                            <a href="{% url 'portfolio' %}?category={{ project.category.slug }}">{{ project.category.name }}</a>
+                            <strong><i class="fa-solid fa-folder me-1" style="color: var(--brand-primary);"></i> Category:</strong>
+                            <a href="{% url 'portfolio' %}?category={{ project.category.slug }}" style="color: var(--brand-primary);">{{ project.category.name }}</a>
                         </div>
                         {% endif %}
 
                         {% if project.technologies %}
                         <div class="mb-3">
-                            <strong><i class="fa fa-cogs"></i> Technologies:</strong>
+                            <strong><i class="fa-solid fa-gears me-1" style="color: var(--brand-primary);"></i> Technologies:</strong>
                             <div class="mt-2">
                                 {% for tech in project.get_technologies_list %}
-                                <span class="badge bg-light text-dark mb-1">{{ tech }}</span>
+                                <span class="blog-card__tag me-1 mb-1 d-inline-block">{{ tech }}</span>
                                 {% endfor %}
                             </div>
                         </div>
                         {% endif %}
 
-                        <div class="mb-3">
-                            <strong><i class="fa fa-calendar"></i> Created:</strong>
+                        <div class="mb-0">
+                            <strong><i class="fa-solid fa-calendar me-1" style="color: var(--brand-primary);"></i> Created:</strong>
                             {{ project.created_date|date:"M d, Y" }}
                         </div>
                     </div>
@@ -102,19 +101,19 @@
 
                 <!-- Links Card -->
                 {% if project.github_url or project.live_url %}
-                <div class="card shadow-sm mb-4">
-                    <div class="card-header bg-dark text-white">
-                        <h5 class="mb-0"><i class="fa fa-link"></i> Links</h5>
+                <div class="card mb-4" style="border: none; box-shadow: var(--shadow-sm); border-radius: var(--radius-md); overflow: hidden;">
+                    <div class="card-header" style="background: var(--bg-dark); color: #fff; border: none;">
+                        <h5 class="mb-0"><i class="fa-solid fa-link me-2"></i>Links</h5>
                     </div>
                     <div class="card-body">
                         {% if project.github_url %}
                         <a href="{{ project.github_url }}" target="_blank" class="btn btn-outline-dark w-100 mb-2">
-                            <i class="fa fa-github"></i> View on GitHub
+                            <i class="fa-brands fa-github me-1"></i> View on GitHub
                         </a>
                         {% endif %}
                         {% if project.live_url %}
                         <a href="{{ project.live_url }}" target="_blank" class="btn btn-outline-success w-100">
-                            <i class="fa fa-external-link"></i> Live Demo
+                            <i class="fa-solid fa-up-right-from-square me-1"></i> Live Demo
                         </a>
                         {% endif %}
                     </div>
@@ -122,8 +121,8 @@
                 {% endif %}
 
                 <!-- Back Button -->
-                <a href="{% url 'portfolio' %}" class="btn btn-primary w-100">
-                    <i class="fa fa-arrow-left"></i> Back to Portfolio
+                <a href="{% url 'portfolio' %}" class="btn-gradient w-100 text-center">
+                    <i class="fa-solid fa-arrow-left me-1"></i> Back to Portfolio
                 </a>
             </div>
         </div>
@@ -132,23 +131,23 @@
         {% if related_projects %}
         <div class="row mt-5">
             <div class="col-12">
-                <h3 class="mb-4">Related Projects</h3>
+                <h3 class="section-heading"><i class="fa-solid fa-layer-group section-heading__icon"></i>Related Projects</h3>
             </div>
             {% for related in related_projects %}
             <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100 shadow-sm">
+                <div class="card h-100 project-card">
                     {% if related.featured_image %}
                     <img src="{{ related.featured_image.url }}" class="card-img-top" alt="{{ related.title }}" style="height: 150px; object-fit: cover;" loading="lazy">
                     {% else %}
-                    <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center" style="height: 150px;">
-                        <i class="fa fa-code fa-2x text-white-50"></i>
+                    <div class="card-img-top d-flex align-items-center justify-content-center" style="height: 150px; background: var(--bg-section-alt);">
+                        <i class="fa-solid fa-code fa-2x" style="color: var(--text-light);"></i>
                     </div>
                     {% endif %}
                     <div class="card-body">
                         <h5 class="card-title">
-                            <a href="{% url 'project_detail' related.slug %}" class="text-decoration-none">{{ related.title }}</a>
+                            <a href="{% url 'project_detail' related.slug %}" class="text-decoration-none" style="color: var(--text-heading);">{{ related.title }}</a>
                         </h5>
-                        <p class="card-text small">{{ related.description|truncatewords:15 }}</p>
+                        <p class="card-text small" style="color: var(--text-muted);">{{ related.description|truncatewords:15 }}</p>
                     </div>
                 </div>
             </div>

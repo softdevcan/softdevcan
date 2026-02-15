@@ -1,0 +1,23 @@
+<div class="mb-5">
+    <h3 class="section-heading">
+        <i class="fa-solid fa-{{ icon }} section-heading__icon"></i>{{ title }}
+    </h3>
+    <div class="row g-4">
+        {% for skill in skills %}
+        <div class="col-md-4">
+            <div class="skill-card">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <div class="d-flex align-items-center">
+                        <span style="font-size: 1.5rem; margin-right: 12px;">{{ skill.get_icon|safe }}</span>
+                        <h4 class="skill-card__name">{{ skill.name }}</h4>
+                    </div>
+                    <span class="skill-card__percentage">{{ skill.percentage }}%</span>
+                </div>
+                <div class="skill-card__bar">
+                    <div class="skill-card__bar-fill" style="width: {{ skill.percentage }}%;"></div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

@@ -35,6 +35,7 @@ def layout(request):
                 'home_banner_name', 'home_banner_title',
                 'home_banner_description', 'about_myself_footer',
                 'about_myself_welcome',
+                'contact_email', 'contact_phone', 'contact_location',
             ]
         )
     }
@@ -55,6 +56,9 @@ def layout(request):
         'home_banner_description': general_settings.get('home_banner_description', ''),
         'about_myself_footer': general_settings.get('about_myself_footer', ''),
         'about_myself_welcome': general_settings.get('about_myself_welcome', ''),
+        'contact_email': general_settings.get('contact_email', ''),
+        'contact_phone': general_settings.get('contact_phone', ''),
+        'contact_location': general_settings.get('contact_location', ''),
         'header_logo': image_settings.get('header_logo', ''),
         'home_banner_image': image_settings.get('home_banner_image', ''),
         'site_favicon': image_settings.get('site_favicon', ''),

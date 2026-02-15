@@ -1,29 +1,27 @@
 
         <!--================Footer Area =================-->
-        <footer style="background: #1F2937; color: #E5E7EB; padding: 40px 0 20px; border-top: 1px solid #374151;">
+        <footer class="footer-modern">
         	<div class="container">
         		<div class="row align-items-center">
         			<div class="col-lg-6 mb-3 mb-lg-0">
-                        <p class="mb-2" style="font-size: 0.95rem; line-height: 1.6; color: #D1D5DB;">
+                        <p class="footer-modern__description">
                             {{ about_myself_footer }}
                         </p>
-                        <p class="mb-0" style="font-size: 0.85rem; color: #9CA3AF;">
-                            &copy; <script>document.write(new Date().getFullYear());</script> Can Akyıldırım. All rights reserved.
+                        <p class="footer-modern__copyright">
+                            &copy; {% now "Y" %} Can Akyıldırım. All rights reserved.
                         </p>
         			</div>
 
         			<div class="col-lg-6">
                         <div class="d-flex justify-content-lg-end align-items-center">
-                            <span style="font-size: 0.9rem; color: #9CA3AF; margin-right: 15px;">Connect:</span>
+                            <span class="footer-modern__social-label">Connect:</span>
                             <ul class="list-inline mb-0">
                                 {% for social in social_medias %}
                                     <li class="list-inline-item">
                                         <a href="{{ social.link }}"
                                            target="_blank"
                                            title="{{ social.get_platform_display }}"
-                                           style="color: #E5E7EB; font-size: 1.3rem; transition: all 0.3s ease; display: inline-block;"
-                                           onmouseover="this.style.color='#667eea'; this.style.transform='translateY(-2px)'"
-                                           onmouseout="this.style.color='#E5E7EB'; this.style.transform='translateY(0)'">
+                                           class="footer-modern__social-link">
                                             {{ social.get_icon|safe }}
                                         </a>
                                     </li>

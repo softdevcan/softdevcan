@@ -3,85 +3,88 @@
 
 
 {% block banner_area %}
-
-    <section class="banner_area">
-        <div class="box_1620">
-            <div class="banner_inner d-flex align-items-center">
-                <div class="container">
-                    <div class="banner_content text-center">
-
-                        <h2>Contact Me</h2>
-                        <div class="page_link">
-                            <a href="{% url 'index' %}">Home</a>
-                            <a href="{% url 'contact' %}">Contact Me</a>
-                        </div>
-                    </div>
-                </div>
+<section class="banner-modern">
+    <div class="container">
+        <div class="banner-modern__content">
+            <h1 class="banner-modern__title">Contact Me</h1>
+            <p class="banner-modern__subtitle">Feel free to reach out for collaborations or just a friendly chat</p>
+            <div class="banner-modern__breadcrumb">
+                <a href="{% url 'index' %}">Home</a>
+                <span class="separator">/</span>
+                <span class="current">Contact</span>
             </div>
         </div>
-    </section>
-
+    </div>
+</section>
 {% endblock %}
-
-
 
 
 {% block content %}
 
     <!--================Contact Area =================-->
-    <section class="contact_area p_120">
+    <section class="py-5">
         <div class="container">
-
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="contact_info">
-                        <div class="info_item">
-                            <i class="lnr lnr-home"></i>
-                            <h6>Eskişehir, Turkey</h6>
-                            <p> </p>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="contact-info-item">
+                        <div class="contact-info-item__icon">
+                            <i class="fa-solid fa-location-dot"></i>
                         </div>
-                        <div class="info_item">
-                            <i class="lnr lnr-phone-handset"></i>
-                            <h6><a href="#">90 (552) 256 14 05</a></h6>
-                            <p>Mon to Fri 9am to 6 pm</p>
+                        <h6 class="contact-info-item__title">{{ contact_location|default:"Ankara, Turkey" }}</h6>
+                        <p class="contact-info-item__detail">Based here</p>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-item__icon">
+                            <i class="fa-solid fa-phone"></i>
                         </div>
-                        <div class="info_item">
-                            <i class="lnr lnr-envelope"></i>
-                            <h6><a href="#">akyildirimcan@gmail.com</a></h6>
-                            <p>Send us your query anytime!</p>
+                        <h6 class="contact-info-item__title">
+                            <a href="tel:{{ contact_phone }}" style="color: inherit; text-decoration: none;">
+                                {{ contact_phone|default:"+90 (555) 555 55 55" }}
+                            </a>
+                        </h6>
+                        <p class="contact-info-item__detail">Mon to Fri 9am to 6pm</p>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-item__icon">
+                            <i class="fa-solid fa-envelope"></i>
                         </div>
+                        <h6 class="contact-info-item__title">
+                            <a href="mailto:{{ contact_email }}" style="color: inherit; text-decoration: none;">
+                                {{ contact_email|default:"example@mail.com" }}
+                            </a>
+                        </h6>
+                        <p class="contact-info-item__detail">Send us your query anytime!</p>
                     </div>
                 </div>
-                <div class="col-lg-9">
-                    <form class="row contact_form" action="{% url 'contact_form' %}" method="post" id="contactForm"
-                          novalidate="novalidate">
-
-                        {% csrf_token %}
-
-                        <div class="col-md-6">
-                            <div class="form-group">
+                <div class="col-lg-8">
+                    <div class="p-4" style="background: var(--bg-section-alt); border-radius: var(--radius-md);">
+                        <h4 style="color: var(--text-heading); font-weight: 700; margin-bottom: 1.5rem;">Send a Message</h4>
+                        <form class="row contact_form contact-form" action="{% url 'contact_form' %}" method="post" id="contactForm"
+                              novalidate="novalidate">
+                            {% csrf_token %}
+                            <div class="col-md-6 mb-3">
                                 <input type="text" class="form-control" id="{{ contact_form.name.id_for_label }}" name="{{ contact_form.name.html_name }}"
                                        placeholder="Enter your name">
                             </div>
-                            <div class="form-group">
+                            <div class="col-md-6 mb-3">
                                 <input type="email" class="form-control" id="{{ contact_form.email.id_for_label }}" name="{{ contact_form.email.html_name }}"
                                        placeholder="Enter email address">
                             </div>
-                            <div class="form-group">
+                            <div class="col-12 mb-3">
                                 <input type="text" class="form-control" id="{{ contact_form.subject.id_for_label }}" name="{{ contact_form.subject.html_name }}"
                                        placeholder="Enter Subject">
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <textarea class="form-control" name="{{ contact_form.message.html_name }}" id="{{ contact_form.message.id_for_label }}" rows="1"
+                            <div class="col-12 mb-3">
+                                <textarea class="form-control" name="{{ contact_form.message.html_name }}" id="{{ contact_form.message.id_for_label }}" rows="5"
                                           placeholder="Enter Message"></textarea>
                             </div>
-                        </div>
-                        <div class="col-md-12 text-end">
-                            <button type="submit" value="submit" class="btn submit_btn">Send Message</button>
-                        </div>
-                    </form>
+                            <div class="col-12 text-end">
+                                <button type="submit" value="submit" class="btn-gradient btn-gradient--lg">
+                                    <i class="fa-solid fa-paper-plane me-2"></i>Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -103,7 +106,6 @@
     </div>
 
     <!-- Modals error -->
-
     <div id="error" class="modal modal-message fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
