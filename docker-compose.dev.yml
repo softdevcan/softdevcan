@@ -1,0 +1,15 @@
+version: "3.8"
+# Development override: docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+services:
+  postgres:
+    ports:
+      - "5432:5432"
+
+  redis:
+    ports:
+      - "6379:6379"
+
+  app:
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"

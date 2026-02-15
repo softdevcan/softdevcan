@@ -39,3 +39,6 @@ class Message(AbstractModel):
         verbose_name = 'Message'
         verbose_name_plural = 'Messages'
         ordering = ('name',)
+        indexes = [
+            models.Index(fields=['-created_date']),
+        ]

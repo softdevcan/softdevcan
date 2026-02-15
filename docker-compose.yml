@@ -9,6 +9,14 @@ services:
       - "postgresql-data:/var/lib/postgresql/data"
     command: -p 5432
 
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    expose:
+      - "6379"
+    volumes:
+      - redis-data:/data
+
   app:
     container_name: app_resume
     hostname: app_resume
@@ -18,12 +26,14 @@ services:
     restart: unless-stopped
     depends_on:
       - postgres
+      - redis
     env_file:
       - resume/docker.env
     volumes:
       - .:/srv/app
       - static-files:/srv/app/staticfiles
       - media-files:/srv/app/media
+      - ./logs:/srv/app/logs
     expose:
       - "8000"
     command: gunicorn resume.wsgi:application --bind 0.0.0.0:8000
@@ -43,5 +53,6 @@ services:
 
 volumes:
   postgresql-data:
+  redis-data:
   static-files:
   media-files:

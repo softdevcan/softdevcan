@@ -7,6 +7,9 @@ django-environ==0.11.2
 # Database
 psycopg2-binary==2.9.10
 
+# Cache
+redis==5.2.1
+
 # WSGI server
 gunicorn==23.0.0
 
@@ -26,3 +29,6 @@ asgiref==3.8.1
 # Blog features
 markdown==3.7
 pygments==2.18.0
+
+# Modern admin interface
+django-unfold==0.40.0

@@ -1,0 +1,34 @@
+/* Custom overrides for modern design */
+
+/* Navbar fixes - make links visible */
+.header_area .navbar .nav .nav-item .nav-link {
+    color: #374151 !important;
+}
+
+.header_area .navbar .nav .nav-item .nav-link:after {
+    display: none !important;
+}
+
+.header_area .navbar .nav .nav-item:hover .nav-link,
+.header_area .navbar .nav .nav-item.active .nav-link {
+    color: #667eea !important;
+}
+
+/* Remove old welcome_area padding */
+.welcome_area.p_120 {
+    padding: 60px 0 !important;
+}
+
+/* Ensure skill cards display properly */
+.skill-card {
+    background: white !important;
+    padding: 20px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+    transition: all 0.3s ease !important;
+}
+
+.skill-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.12) !important;
+}

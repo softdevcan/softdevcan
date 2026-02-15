@@ -2,38 +2,61 @@
 {% load static %}
 
 {% block banner_area %}
-    <section class="home_banner_area">
-        <div class="container box_1620">
-            <div class="banner_inner d-flex align-items-center">
-                <div class="banner_content">
+    <section style="background: #ffffff; padding: 80px 0; border-bottom: 1px solid #E5E7EB;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 text-center mb-4 mb-lg-0">
+                    <img src="{{ home_banner_image.url }}"
+                         alt="{{ home_banner_name }}"
+                         style="width: 280px; height: 280px; object-fit: cover; border-radius: 50%; box-shadow: 0 10px 40px rgba(0,0,0,0.1); border: 5px solid #F9FAFB;">
+                </div>
+                <div class="col-lg-8">
+                    <div style="max-width: 600px;">
+                        <p style="color: #6B7280; font-size: 1rem; margin-bottom: 8px; font-weight: 500;">
+                            Hello, I'm
+                        </p>
+                        <h1 style="font-size: 3rem; font-weight: 700; color: #111827; margin-bottom: 8px; line-height: 1.2;">
+                            {{ home_banner_name }}
+                        </h1>
+                        <h2 style="font-size: 1.5rem; color: #667eea; margin-bottom: 20px; font-weight: 600;">
+                            {{ home_banner_title }}
+                        </h2>
+                        <p style="font-size: 1.1rem; color: #4B5563; line-height: 1.7; margin-bottom: 30px;">
+                            {{ home_banner_description }}
+                        </p>
 
-                    <div class="media">
-                        <div class="d-flex">
-                            <img src="{{ home_banner_image.url }}" alt="" >
-                        </div>
-                        <div class="media-body">
-                            <div class="personal_text">
-                                <h6>Hello Everybody, i am</h6>
-                                <h3>{{ home_banner_name }}</h3>
-                                <h4>{{ home_banner_title }}</h4>
-                                <p>{{ home_banner_description }}</p>
-                                <ul class="list basic_info">
-                                    <li><a href="javascript:void(0)"><i class="lnr lnr-calendar-full"></i> February 5, 1997 </a></li>
-                                    <li><a href="tel:+90555445566"><i class="lnr lnr-phone-handset"></i> +90 (552) 256 14 05</a></li>
-                                    <li><a href="mailto:akyildirimcan@gmail.com"><i class="lnr lnr-envelope"></i> akyildirimcan@gmail.com</a></li>
-                                    <li><a href="javascript:void(0)"><i class="lnr lnr-home"></i> Eskişehir, Turkey</a></li>
-
-                                </ul>
-                                <ul class="list personal_social">
-                                    {% for social in social_medias %}
-                                        <li><a href="{{ social.link }}" target="_blank">{{ social.icon|safe }}</a></li>
-                                    {% endfor %}
-                                </ul>
+                        <div class="row g-3 mb-4" style="font-size: 0.95rem; color: #6B7280;">
+                            <div class="col-md-6">
+                                <i class="fa-solid fa-envelope" style="color: #667eea; width: 20px;"></i>
+                                <a href="mailto:akyildirimcan@gmail.com" style="color: #6B7280; text-decoration: none;">
+                                    akyildirimcan@gmail.com
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                <i class="fa-solid fa-phone" style="color: #667eea; width: 20px;"></i>
+                                <a href="tel:+905522561405" style="color: #6B7280; text-decoration: none;">
+                                    +90 (552) 256 14 05
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                <i class="fa-solid fa-location-dot" style="color: #667eea; width: 20px;"></i>
+                                <span>Eskişehir, Turkey</span>
                             </div>
                         </div>
+
+                        <div class="d-flex align-items-center" style="gap: 15px;">
+                            {% for social in social_medias %}
+                                <a href="{{ social.link }}"
+                                   target="_blank"
+                                   title="{{ social.get_platform_display }}"
+                                   style="font-size: 1.5rem; color: #6B7280; transition: all 0.3s ease;"
+                                   onmouseover="this.style.color='#667eea'; this.style.transform='translateY(-3px)'"
+                                   onmouseout="this.style.color='#6B7280'; this.style.transform='translateY(0)'">
+                                    {{ social.get_icon|safe }}
+                                </a>
+                            {% endfor %}
+                        </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -44,170 +67,229 @@
 
 {% block content %}
 
-    <!--================Welcome Area =================-->
-
-    <section class="welcome_area p_120">
+    <!--================Skills Area =================-->
+    <section style="background: #F9FAFB; padding: 60px 0;">
         <div class="container">
-            <span>Backend</span>
-            <div class="row welcome_inner" style="margin-bottom: 1em;">
-                <div class="col-md-12">
-                    <div class="tools_expert">
-                        <div class="skill_main d-flex flex-wrap">
-                            {% for skill in backend_skills %}
-                                <div class="skill_item flex-fill" style="min-width: 30%; margin: 1%;">
-                                    <h4>{{ skill.name }} <span class="counter">{{ skill.percentage }}</span>%</h4>
-                                    <div class="progress_br">
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" aria-valuenow="{{ skill.percentage }}"
-                                                 aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
+            <!-- Backend Skills -->
+            <div class="mb-5">
+                <h3 style="font-size: 1.5rem; font-weight: 700; color: #111827; margin-bottom: 30px; padding-bottom: 10px; border-bottom: 3px solid #667eea;">
+                    <i class="fa-solid fa-server" style="color: #667eea; margin-right: 10px;"></i>Backend
+                </h3>
+                <div class="row g-4">
+                    {% for skill in backend_skills %}
+                    <div class="col-md-4">
+                        <div class="skill-card" style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease;">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <div class="d-flex align-items-center">
+                                    <span style="font-size: 1.5rem; margin-right: 12px;">{{ skill.get_icon|safe }}</span>
+                                    <h4 style="font-size: 1rem; font-weight: 600; color: #1F2937; margin: 0;">{{ skill.name }}</h4>
                                 </div>
-                            {% endfor %}
-                            {% for i in 'x'|rjust:3 %}
-                                <div class="flex-grow-1" style="min-width: 30%; margin: 1%; visibility: hidden;"></div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <span>Frontend</span>
-            <div class="row welcome_inner" style="margin-bottom: 1em;">
-                <div class="col-md-12">
-                    <div class="tools_expert">
-                        <div class="skill_main d-flex flex-wrap">
-                            {% for skill in frontend_skills %}
-                                <div class="skill_item flex-fill" style="min-width: 30%; margin: 1%;">
-                                    <h4>{{ skill.name }} <span class="counter">{{ skill.percentage }}</span>%</h4>
-                                    <div class="progress_br">
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" aria-valuenow="{{ skill.percentage }}"
-                                                 aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <span>Devops</span>
-        <div class="row welcome_inner" style="margin-bottom: 1em; ">
-                <div class="col-md-3">
-                    <div class="tools_expert">
-                        <div class="skill_main">
-                            {% for skill in devops_skills %}
-
-                            <div class="skill_item">
-                                <h4>{{ skill.name }} <span class="counter">{{ skill.percentage }}</span>%</h4>
-                                <div class="progress_br">
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="{{ skill.percentage }}"
-                                             aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
+                                <span style="font-size: 1rem; font-weight: 700; color: #667eea;">{{ skill.percentage }}%</span>
                             </div>
-
-                            {% endfor %}
+                            <div style="background: #E5E7EB; height: 8px; border-radius: 10px; overflow: hidden;">
+                                <div style="background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); width: {{ skill.percentage }}%; height: 100%; border-radius: 10px; transition: width 0.3s ease;"></div>
+                            </div>
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
-         <hr>
-        <span>Other</span>
-        <div class="row welcome_inner" style="margin-bottom: 1em; ">
-                <div class="col-md-3">
-                    <div class="tools_expert">
-                        <div class="skill_main">
-                            {% for skill in other_skills %}
 
-                            <div class="skill_item">
-                                <h4>{{ skill.name }} <span class="counter">{{ skill.percentage }}</span>%</h4>
-                                <div class="progress_br">
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="{{ skill.percentage }}"
-                                             aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
+            <!-- Frontend Skills -->
+            <div class="mb-5">
+                <h3 style="font-size: 1.5rem; font-weight: 700; color: #111827; margin-bottom: 30px; padding-bottom: 10px; border-bottom: 3px solid #667eea;">
+                    <i class="fa-solid fa-palette" style="color: #667eea; margin-right: 10px;"></i>Frontend
+                </h3>
+                <div class="row g-4">
+                    {% for skill in frontend_skills %}
+                    <div class="col-md-4">
+                        <div class="skill-card" style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease;">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <div class="d-flex align-items-center">
+                                    <span style="font-size: 1.5rem; margin-right: 12px;">{{ skill.get_icon|safe }}</span>
+                                    <h4 style="font-size: 1rem; font-weight: 600; color: #1F2937; margin: 0;">{{ skill.name }}</h4>
                                 </div>
+                                <span style="font-size: 1rem; font-weight: 700; color: #667eea;">{{ skill.percentage }}%</span>
                             </div>
-
-                            {% endfor %}
+                            <div style="background: #E5E7EB; height: 8px; border-radius: 10px; overflow: hidden;">
+                                <div style="background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); width: {{ skill.percentage }}%; height: 100%; border-radius: 10px; transition: width 0.3s ease;"></div>
+                            </div>
                         </div>
                     </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- DevOps Skills -->
+            <div class="mb-5">
+                <h3 style="font-size: 1.5rem; font-weight: 700; color: #111827; margin-bottom: 30px; padding-bottom: 10px; border-bottom: 3px solid #667eea;">
+                    <i class="fa-solid fa-gears" style="color: #667eea; margin-right: 10px;"></i>DevOps
+                </h3>
+                <div class="row g-4">
+                    {% for skill in devops_skills %}
+                    <div class="col-md-4">
+                        <div class="skill-card" style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease;">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <div class="d-flex align-items-center">
+                                    <span style="font-size: 1.5rem; margin-right: 12px;">{{ skill.get_icon|safe }}</span>
+                                    <h4 style="font-size: 1rem; font-weight: 600; color: #1F2937; margin: 0;">{{ skill.name }}</h4>
+                                </div>
+                                <span style="font-size: 1rem; font-weight: 700; color: #667eea;">{{ skill.percentage }}%</span>
+                            </div>
+                            <div style="background: #E5E7EB; height: 8px; border-radius: 10px; overflow: hidden;">
+                                <div style="background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); width: {{ skill.percentage }}%; height: 100%; border-radius: 10px; transition: width 0.3s ease;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Other Skills -->
+            <div class="mb-5">
+                <h3 style="font-size: 1.5rem; font-weight: 700; color: #111827; margin-bottom: 30px; padding-bottom: 10px; border-bottom: 3px solid #667eea;">
+                    <i class="fa-solid fa-star" style="color: #667eea; margin-right: 10px;"></i>Other
+                </h3>
+                <div class="row g-4">
+                    {% for skill in other_skills %}
+                    <div class="col-md-4">
+                        <div class="skill-card" style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease;">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <div class="d-flex align-items-center">
+                                    <span style="font-size: 1.5rem; margin-right: 12px;">{{ skill.get_icon|safe }}</span>
+                                    <h4 style="font-size: 1rem; font-weight: 600; color: #1F2937; margin: 0;">{{ skill.name }}</h4>
+                                </div>
+                                <span style="font-size: 1rem; font-weight: 700; color: #667eea;">{{ skill.percentage }}%</span>
+                            </div>
+                            <div style="background: #E5E7EB; height: 8px; border-radius: 10px; overflow: hidden;">
+                                <div style="background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); width: {{ skill.percentage }}%; height: 100%; border-radius: 10px; transition: width 0.3s ease;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </section>
-    <!--================End Welcome Area =================-->
+    <!--================End Skills Area =================-->
 
-    <!--================My Tabs Area =================-->
-    <section class="mytabs_area p_120">
+    <!--================Experience & Education Area =================-->
+    <section style="background: #ffffff; padding: 60px 0;">
         <div class="container">
-            <div class="tabs_inner">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                           aria-controls="home" aria-selected="true">My Experiences</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                           aria-controls="profile" aria-selected="false">My Education</a>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <ul class="list">
+            <h3 style="font-size: 1.5rem; font-weight: 700; color: #111827; margin-bottom: 30px; text-align: center;">
+                <i class="fa-solid fa-timeline" style="color: #667eea; margin-right: 10px;"></i>Experience & Education
+            </h3>
+
+            <!-- Modern Tabs -->
+            <ul class="nav nav-pills justify-content-center mb-4" id="myTab" role="tablist" style="gap: 10px;">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab"
+                       aria-controls="home" aria-selected="true"
+                       style="border-radius: 25px; padding: 12px 30px; font-weight: 600; transition: all 0.3s ease; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none;">
+                        <i class="fa-solid fa-briefcase me-2"></i>My Experiences
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab"
+                       aria-controls="profile" aria-selected="false"
+                       style="border-radius: 25px; padding: 12px 30px; font-weight: 600; transition: all 0.3s ease; background: #E5E7EB; color: #6B7280; border: none;">
+                        <i class="fa-solid fa-graduation-cap me-2"></i>My Education
+                    </button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="myTabContent">
+                <!-- Experiences Tab -->
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10">
                             {% for experience in experiences %}
-                            <li>
-                                <span></span>
-                                <div class="media">
-                                    <div class="d-flex">
-                                        <p>{{ experience.start_date|date:"M Y"}} -
+                            <div class="timeline-item" style="background: white; padding: 25px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 20px; border-left: 4px solid #667eea;">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div style="color: #667eea; font-weight: 600; font-size: 0.9rem;">
+                                            <i class="fa-solid fa-calendar-days me-2"></i>
+                                            {{ experience.start_date|date:"M Y"}} -
                                             {% if experience.end_date %}
                                                 {{ experience.end_date|date:"M Y" }}
                                             {% else %}
-                                                Present
-                                            {% endif %}</p>
+                                                <span style="background: #667eea; color: white; padding: 2px 8px; border-radius: 8px; font-size: 0.75rem;">Present</span>
+                                            {% endif %}
+                                        </div>
                                     </div>
-                                    <div class="media-body">
-                                        <h4>{{ experience.company_name }}</h4>
-                                        <p>{{ experience.job_title }} <br/>{{ experience.job_location }}</p>
+                                    <div class="col-md-9">
+                                        <h4 style="font-size: 1.2rem; font-weight: 700; color: #111827; margin-bottom: 8px;">{{ experience.company_name }}</h4>
+                                        <p style="color: #4B5563; margin-bottom: 4px; font-weight: 600;">{{ experience.job_title }}</p>
+                                        <p style="color: #6B7280; font-size: 0.9rem; margin: 0;">
+                                            <i class="fa-solid fa-location-dot me-1"></i>{{ experience.job_location }}
+                                        </p>
                                     </div>
                                 </div>
-                            </li>
+                            </div>
                             {% endfor %}
-                        </ul>
+                        </div>
                     </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <ul class="list">
+                </div>
+
+                <!-- Education Tab -->
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10">
                             {% for education in educations %}
-                            <li>
-                                <span></span>
-                                <div class="media">
-                                    <div class="d-flex">
-                                        <p>{{ education.start_date|date:"M Y"}} -
+                            <div class="timeline-item" style="background: white; padding: 25px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 20px; border-left: 4px solid #667eea;">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div style="color: #667eea; font-weight: 600; font-size: 0.9rem;">
+                                            <i class="fa-solid fa-calendar-days me-2"></i>
+                                            {{ education.start_date|date:"M Y"}} -
                                             {% if education.end_date %}
                                                 {{ education.end_date|date:"M Y" }}
                                             {% else %}
-                                                Present
-                                            {% endif %}</p>
+                                                <span style="background: #667eea; color: white; padding: 2px 8px; border-radius: 8px; font-size: 0.75rem;">Present</span>
+                                            {% endif %}
+                                        </div>
                                     </div>
-                                    <div class="media-body">
-                                        <h4>{{ education.school_name }}</h4>
-                                        <p>{{ education.major }} <br/>{{ education.department }}</p>
+                                    <div class="col-md-9">
+                                        <h4 style="font-size: 1.2rem; font-weight: 700; color: #111827; margin-bottom: 8px;">{{ education.school_name }}</h4>
+                                        <p style="color: #4B5563; margin-bottom: 4px; font-weight: 600;">{{ education.major }}</p>
+                                        <p style="color: #6B7280; font-size: 0.9rem; margin: 0;">{{ education.department }}</p>
                                     </div>
                                 </div>
-                            </li>
+                            </div>
                             {% endfor %}
-                        </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!--================End My Tabs Area =================-->
+    <!--================End Experience & Education Area =================-->
+
+    <style>
+        /* Tab button hover effects */
+        .nav-pills .nav-link:not(.active):hover {
+            background: #D1D5DB !important;
+            color: #374151 !important;
+            transform: translateY(-2px);
+        }
+
+        .nav-pills .nav-link.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+            color: white !important;
+        }
+
+        /* Skill card hover effect */
+        .skill-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.12) !important;
+        }
+
+        /* Timeline item hover effect */
+        .timeline-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15) !important;
+        }
+    </style>
 
 
 {% endblock %}

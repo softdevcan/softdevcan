@@ -2,17 +2,15 @@
 {% load static %}
 
 {% block banner_area %}
-<section class="banner_area">
-    <div class="box_1620">
-        <div class="banner_inner d-flex align-items-center">
-            <div class="container">
-                <div class="banner_content text-center">
-                    <h2>Blog</h2>
-                    <div class="page_link">
-                        <a href="{% url 'index' %}">Home</a>
-                        <a href="{% url 'blog_home' %}">Blog</a>
-                    </div>
-                </div>
+<section class="banner_area" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 80px 0;">
+    <div class="container">
+        <div class="banner_content text-center text-white">
+            <h1 class="mb-3" style="font-size: 3rem; font-weight: 700;">📝 Blog</h1>
+            <p class="lead mb-4" style="font-size: 1.2rem; opacity: 0.9;">Thoughts, tutorials, and insights on software development</p>
+            <div class="page_link">
+                <a href="{% url 'index' %}" class="text-white" style="opacity: 0.8; text-decoration: none;">Home</a>
+                <span class="text-white mx-2" style="opacity: 0.5;">/</span>
+                <a href="{% url 'blog_home' %}" class="text-white" style="font-weight: 600;">Blog</a>
             </div>
         </div>
     </div>
@@ -20,73 +18,189 @@
 {% endblock %}
 
 {% block content %}
-<section class="blog_area p_120">
+<section class="blog_area py-5" style="background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);">
     <div class="container">
         <!-- Search Form -->
         <div class="row mb-5">
             <div class="col-lg-8 offset-lg-2">
-                <form method="get" action="{% url 'blog_home' %}">
-                    <div class="input-group input-group-lg">
-                        <input type="text" name="q" class="form-control" placeholder="Search blog posts..." value="{{ search_query }}" aria-label="Search">
-                        <button class="btn btn-primary" type="submit">
-                            <i class="fa fa-search"></i> Search
+                <form method="get" action="{% url 'blog_home' %}" class="shadow-sm">
+                    <div class="input-group input-group-lg" style="border-radius: 50px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                        <span class="input-group-text bg-white border-0" style="padding-left: 20px;">
+                            <i class="fa-solid fa-magnifying-glass text-muted"></i>
+                        </span>
+                        <input type="text" name="q" class="form-control border-0"
+                               placeholder="Search articles, tutorials, guides..."
+                               value="{{ search_query }}"
+                               aria-label="Search"
+                               style="font-size: 1rem; padding: 12px 20px;">
+                        <button class="btn btn-primary border-0" type="submit" style="padding: 12px 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
                 </form>
                 {% if search_query %}
-                <p class="text-muted mt-2">Showing results for: <strong>"{{ search_query }}"</strong></p>
+                <div class="alert alert-info mt-3" style="border-radius: 12px; border-left: 4px solid #667eea;">
+                    <i class="fa-solid fa-search"></i> Showing results for: <strong>"{{ search_query }}"</strong>
+                    <a href="{% url 'blog_home' %}" class="alert-link float-end">Clear search</a>
+                </div>
                 {% endif %}
             </div>
         </div>
 
-        <!-- Blog Posts -->
-        <div class="row">
-            <div class="col-lg-8 offset-lg-2">
-                {% if posts %}
-                    {% for post in posts %}
-                    <article class="blog_item mb-5">
+        <!-- Blog Posts Grid -->
+        <div class="row g-4">
+            {% if posts %}
+                {% for post in posts %}
+                <div class="col-lg-6">
+                    <article class="card h-100 border-0 shadow-sm hover-lift" style="border-radius: 16px; overflow: hidden; transition: all 0.3s ease;">
+                        <style>
+                            .hover-lift:hover {
+                                transform: translateY(-8px);
+                                box-shadow: 0 12px 24px rgba(0,0,0,0.15) !important;
+                            }
+                        </style>
+
                         {% if post.image %}
-                        <div class="blog_item_img">
-                            <img class="card-img rounded-0 img-fluid" src="{{ post.image.url }}" alt="{{ post.title }}">
+                        <div class="position-relative" style="height: 250px; overflow: hidden;">
+                            <img src="{{ post.image.url }}"
+                                 class="card-img-top w-100 h-100"
+                                 alt="{{ post.title }}"
+                                 loading="lazy"
+                                 style="object-fit: cover; transition: transform 0.3s ease;"
+                                 onmouseover="this.style.transform='scale(1.05)'"
+                                 onmouseout="this.style.transform='scale(1)'">
+                            {% if post.category %}
+                            <span class="position-absolute top-0 end-0 m-3 badge" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 8px 16px; border-radius: 20px; font-size: 0.75rem;">
+                                {{ post.category.name }}
+                            </span>
+                            {% endif %}
+                        </div>
+                        {% else %}
+                        <div class="position-relative" style="height: 250px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-book-open" style="font-size: 4rem; color: rgba(255,255,255,0.3);"></i>
+                            {% if post.category %}
+                            <span class="position-absolute top-0 end-0 m-3 badge bg-white text-dark" style="padding: 8px 16px; border-radius: 20px; font-size: 0.75rem;">
+                                {{ post.category.name }}
+                            </span>
+                            {% endif %}
                         </div>
                         {% endif %}
-                        <div class="blog_details">
-                            <a href="{% url 'blog_detail' post.slug %}">
-                                <h2>{{ post.title }}</h2>
+
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3" style="font-size: 0.875rem; color: #6B7280;">
+                                <div class="d-flex align-items-center me-3">
+                                    <i class="fa-solid fa-user-circle me-1" style="color: #667eea;"></i>
+                                    <span>{{ post.author.get_full_name|default:post.author.username }}</span>
+                                </div>
+                                <div class="d-flex align-items-center me-3">
+                                    <i class="fa-solid fa-calendar-days me-1" style="color: #667eea;"></i>
+                                    <span>{{ post.published_date|date:"M d, Y" }}</span>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <i class="fa-solid fa-clock me-1" style="color: #667eea;"></i>
+                                    <span>{{ post.reading_time }} min</span>
+                                </div>
+                            </div>
+
+                            <a href="{% url 'blog_detail' post.slug %}" class="text-decoration-none">
+                                <h3 class="card-title mb-3" style="font-size: 1.5rem; font-weight: 700; color: #1F2937; line-height: 1.4;">
+                                    {{ post.title }}
+                                </h3>
                             </a>
-                            <p>{{ post.excerpt|default:post.content|truncatewords:50 }}</p>
-                            <ul class="blog-info-link list-inline">
-                                <li class="list-inline-item">
-                                    <i class="fa fa-user"></i> {{ post.author.get_full_name|default:post.author.username }}
-                                </li>
-                                <li class="list-inline-item">
-                                    <i class="fa fa-calendar"></i> {{ post.published_date|date:"M d, Y" }}
-                                </li>
-                                {% if post.category %}
-                                <li class="list-inline-item">
-                                    <i class="fa fa-folder"></i> {{ post.category.name }}
-                                </li>
-                                {% endif %}
-                                <li class="list-inline-item">
-                                    <i class="fa fa-eye"></i> {{ post.view_count }} views
-                                </li>
-                                <li class="list-inline-item">
-                                    <i class="fa fa-clock-o"></i> {{ post.reading_time }} min read
-                                </li>
-                            </ul>
+
+                            <p class="card-text text-muted mb-3" style="font-size: 0.95rem; line-height: 1.6;">
+                                {{ post.excerpt|default:post.content|truncatewords:30 }}
+                            </p>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="{% url 'blog_detail' post.slug %}"
+                                   class="btn btn-link p-0 text-decoration-none"
+                                   style="color: #667eea; font-weight: 600; font-size: 0.95rem;">
+                                    Read more <i class="fa-solid fa-arrow-right ms-1"></i>
+                                </a>
+                                <div class="d-flex align-items-center text-muted" style="font-size: 0.875rem;">
+                                    <i class="fa-solid fa-eye me-1"></i>
+                                    <span>{{ post.view_count }}</span>
+                                </div>
+                            </div>
+
+                            {% if post.tags.exists %}
+                            <div class="mt-3 pt-3 border-top">
+                                {% for tag in post.tags.all|slice:":3" %}
+                                <span class="badge bg-light text-dark me-1 mb-1" style="font-weight: 500; padding: 6px 12px; border-radius: 12px; font-size: 0.75rem;">
+                                    #{{ tag.name }}
+                                </span>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
                         </div>
                     </article>
-                    {% endfor %}
-                {% else %}
-                    <div class="text-center">
-                        <p class="lead">{% if search_query %}No posts found matching your search.{% else %}No blog posts available yet.{% endif %}</p>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-12">
+                    <div class="text-center py-5">
+                        <div class="mb-4">
+                            <i class="fa-solid fa-inbox" style="font-size: 5rem; color: #E5E7EB;"></i>
+                        </div>
+                        <h3 class="mb-3" style="color: #6B7280;">
+                            {% if search_query %}
+                                No posts found matching "{{ search_query }}"
+                            {% else %}
+                                No blog posts available yet
+                            {% endif %}
+                        </h3>
+                        <p class="text-muted mb-4">
+                            {% if search_query %}
+                                Try adjusting your search terms or browse all posts
+                            {% else %}
+                                Check back soon for new content!
+                            {% endif %}
+                        </p>
                         {% if search_query %}
-                        <a href="{% url 'blog_home' %}" class="btn btn-primary">View All Posts</a>
+                        <a href="{% url 'blog_home' %}" class="btn btn-primary" style="border-radius: 25px; padding: 12px 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                            <i class="fa-solid fa-arrow-left me-2"></i> View All Posts
+                        </a>
                         {% endif %}
                     </div>
-                {% endif %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- RSS Feed Link -->
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <a href="{% url 'blog_feed' %}" class="text-decoration-none text-muted" style="font-size: 0.875rem;">
+                    <i class="fa-solid fa-rss"></i> Subscribe to RSS Feed
+                </a>
             </div>
         </div>
     </div>
 </section>
+
+<style>
+    /* Smooth animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .card {
+        animation: fadeInUp 0.5s ease-out;
+    }
+
+    /* Gradient text for links */
+    .btn-link:hover {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+</style>
 {% endblock %}

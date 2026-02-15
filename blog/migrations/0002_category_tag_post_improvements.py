@@ -105,7 +105,7 @@ class Migration(migrations.Migration):
             name='content',
             field=models.TextField(verbose_name='Content'),
         ),
-        migrations.AlterField(
+        migrations.AddField(
             model_name='post',
             name='image',
             field=models.ImageField(blank=True, upload_to='blog_img/', verbose_name='Featured Image'),

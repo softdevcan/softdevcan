@@ -63,6 +63,7 @@ if not DEBUG:
 # Application definition
 
 INSTALLED_APPS = [
+    'unfold',  # Modern admin theme - must be before django.contrib.admin
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -94,8 +95,7 @@ ROOT_URLCONF = 'resume.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -117,6 +117,15 @@ WSGI_APPLICATION = 'resume.wsgi.application'
 
 DATABASES = {
     'default': env.db(),
+}
+
+
+# Cache configuration (Redis)
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": env("REDIS_URL", default="redis://redis:6379/0"),
+    }
 }
 
 
@@ -171,13 +180,13 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# Django 5.2+ STORAGES configuration for local storage
+# Django 5.2+ STORAGES configuration
 STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
     },
 }
 
@@ -186,11 +195,175 @@ STORAGES = {
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-e = env('EMAIL')
-p = env('EMAIL_PASSWORD')
+
+# Email configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = str(e)
-EMAIL_HOST_PASSWORD = str(p)
+EMAIL_HOST_USER = env('EMAIL')
+EMAIL_HOST_PASSWORD = env('EMAIL_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+
+# Logging configuration
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'logs' / 'django.log',
+            'formatter': 'verbose',
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+    },
+    'root': {
+        'handlers': ['console', 'file'],
+        'level': 'INFO',
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'file'],
+            'level': 'WARNING',
+            'propagate': False,
+        },
+        'django.request': {
+            'handlers': ['file'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+    },
+}
+
+# ============================================================================
+# DJANGO UNFOLD ADMIN THEME CONFIGURATION
+# ============================================================================
+
+UNFOLD = {
+    "SITE_TITLE": "Can Akyıldırım Admin",
+    "SITE_HEADER": "Portfolio Administration",
+    "SITE_URL": "/",
+    "SITE_ICON": {
+        "light": "/static/images/icon-light.svg",  # Optional
+        "dark": "/static/images/icon-dark.svg",    # Optional
+    },
+    "SITE_LOGO": {
+        "light": "/static/images/logo-light.svg",  # Optional
+        "dark": "/static/images/logo-dark.svg",    # Optional
+    },
+    "SITE_SYMBOL": "speed",  # Symbol from Icon Set
+    "SHOW_HISTORY": True,  # Show history on change forms
+    "SHOW_VIEW_ON_SITE": True,  # Show view on site button
+    "ENVIRONMENT": "resume.settings.environment_callback",
+    "DASHBOARD_CALLBACK": "resume.settings.dashboard_callback",
+    "COLORS": {
+        "primary": {
+            "50": "250 245 255",
+            "100": "243 232 255",
+            "200": "233 213 255",
+            "300": "216 180 254",
+            "400": "192 132 252",
+            "500": "168 85 247",
+            "600": "147 51 234",
+            "700": "126 34 206",
+            "800": "107 33 168",
+            "900": "88 28 135",
+            "950": "59 7 100",
+        },
+    },
+    "EXTENSIONS": {
+        "modeltranslation": {
+            "flags": {
+                "en": "🇬🇧",
+                "tr": "🇹🇷",
+            },
+        },
+    },
+    "SIDEBAR": {
+        "show_search": True,  # Search in navigation
+        "show_all_applications": True,  # Dropdown show all applications
+        "navigation": [
+            {
+                "title": "Navigation",
+                "separator": True,  # Top border
+                "items": [
+                    {
+                        "title": "Dashboard",
+                        "icon": "dashboard",
+                        "link": "/admin/",
+                    },
+                ],
+            },
+            {
+                "title": "Content Management",
+                "separator": True,
+                "collapsible": True,
+                "items": [
+                    {
+                        "title": "Core Settings",
+                        "icon": "settings",
+                        "link": "/admin/core/",
+                    },
+                    {
+                        "title": "Blog",
+                        "icon": "article",
+                        "link": "/admin/blog/",
+                    },
+                    {
+                        "title": "Contact Messages",
+                        "icon": "mail",
+                        "link": "/admin/contact/",
+                    },
+                ],
+            },
+        ],
+    },
+    "TABS": [
+        {
+            "models": [
+                "core.generalsetting",
+                "core.imagesetting",
+            ],
+            "items": [
+                {
+                    "title": "General Settings",
+                    "link": "/admin/core/generalsetting/",
+                },
+                {
+                    "title": "Image Settings",
+                    "link": "/admin/core/imagesetting/",
+                },
+            ],
+        },
+    ],
+}
+
+
+def environment_callback(request):  # noqa: ARG001
+    """
+    Callback to show environment indicator in admin header
+    """
+    return ["Development", "warning"]  # Can be: success, info, warning, danger
+
+
+def dashboard_callback(request, context):  # noqa: ARG001
+    """
+    Callback to customize dashboard
+    """
+    context.update({
+        "navigation": [
+            {"title": "Quick Actions", "link": "#"},
+        ],
+    })
+    return context

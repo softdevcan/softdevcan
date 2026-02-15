@@ -1,132 +1,132 @@
-# 🗺️ Django Portfolyo ve Blog Uygulaması - Modernizasyon Yol Haritası
+# Django Portfolyo ve Blog Uygulamasi - Modernizasyon Yol Haritasi
 
-> Oluşturulma Tarihi: 2026-02-02
+> Olusturulma Tarihi: 2026-02-02
 > Proje: softdevcan (me.softdevcan.site)
 
 ---
 
-## Genel Bakış
+## Genel Bakis
 
-Bu doküman, Django portfolyo ve blog uygulamasının modernizasyon sürecini adım adım tanımlar. Her faz, bir sonraki fazın temelini oluşturacak şekilde sıralanmıştır.
+Bu dokuman, Django portfolyo ve blog uygulamasinin modernizasyon surecini adim adim tanimlar. Her faz, bir sonraki fazin temelini olusturacak sekilde siralanmistir.
 
 ---
 
-## **Faz 0: Temizlik ve Hazırlık** *(Temel)*
-> *Diğer tüm işlerin sağlam bir zemin üzerinde yapılması için*
+## **Faz 0: Temizlik ve Hazirlik** *(Temel)*
+> *Diger tum islerin saglam bir zemin uzerinde yapilmasi icin*
 
-| # | İş | Açıklama | Durum |
+| # | Is | Aciklama | Durum |
 |---|-----|----------|-------|
-| 0.1 | Aylak kod temizliği | Kullanılmayan template'ler, Streamlit referansları | ✅ |
-| 0.2 | Git repo düzenleme | .gitignore güncellemesi, branch stratejisi | ✅ |
+| 0.1 | Aylak kod temizligi | Kullanilmayan template'ler, Streamlit referanslari | ✅ |
+| 0.2 | Git repo duzenleme | .gitignore guncellemesi, branch stratejisi | ✅ |
 | 0.3 | Bug fix'ler | blog_detail.html layout sorunu, blog_home URL fix | ✅ |
-| 0.4 | Mevcut testlerin yazılması | Mevcut işlevselliği korumak için temel testler | ⬜ |
+| 0.4 | Mevcut testlerin yazilmasi | core, blog, contact app testleri (~27 test) | ✅ |
 
 ---
 
-## **Faz 1: Altyapı Güncelleme** *(Zorunlu)*
-> *Güvenlik ve uyumluluk için öncelikli*
+## **Faz 1: Altyapi Guncelleme** *(Zorunlu)*
+> *Guvenlik ve uyumluluk icin oncelikli*
 
-| # | İş | Açıklama | Durum |
+| # | Is | Aciklama | Durum |
 |---|-----|----------|-------|
-| 1.1 | Python 3.12 upgrade | Dockerfile güncelleme | ✅ |
+| 1.1 | Python 3.12 upgrade | Dockerfile guncelleme | ✅ |
 | 1.2 | Django 5.2 LTS upgrade | Settings STORAGES config, uyumluluk | ✅ |
-| 1.3 | Paket güncellemeleri | requirements.txt tüm paketler | ✅ |
-| 1.4 | PostgreSQL 16 upgrade | docker-compose güncelleme | ✅ |
+| 1.3 | Paket guncellemeleri | requirements.txt tum paketler | ✅ |
+| 1.4 | PostgreSQL 16 upgrade | docker-compose guncelleme | ✅ |
 
 ---
 
-## **Faz 2: Güvenlik** *(Kritik)*
-> *Production'a çıkmadan önce şart*
+## **Faz 2: Guvenlik** *(Kritik)*
+> *Production'a cikmadan once sart*
 
-| # | İş | Açıklama | Durum |
+| # | Is | Aciklama | Durum |
 |---|-----|----------|-------|
-| 2.1 | HTTPS/SSL kurulumu | Cloudflare SSL/TLS yapılandırması | ✅ |
+| 2.1 | HTTPS/SSL kurulumu | Cloudflare SSL/TLS yapilandirmasi | ✅ |
 | 2.2 | Nginx hardening | Security headers, rate limiting, Cloudflare IP | ✅ |
 | 2.3 | Django security settings | CSRF, HSTS, Secure cookies, password validation | ✅ |
-| 2.4 | Environment secrets | .env template güncelleme, SECURITY.md | ✅ |
+| 2.4 | Environment secrets | .env template guncelleme, SECURITY.md | ✅ |
 
 ---
 
-## **Faz 3: Veritabanı ve Model İyileştirmeleri** *(Yapısal)*
-> *Frontend'den önce veri katmanı düzeltilmeli*
+## **Faz 3: Veritabani ve Model Iyilestirmeleri** *(Yapisal)*
+> *Frontend'den once veri katmani duzeltilmeli*
 
-| # | İş | Açıklama | Durum |
+| # | Is | Aciklama | Durum |
 |---|-----|----------|-------|
-| 3.1 | Blog modeli geliştirme | Slug, excerpt, kategori, tag, status, view_count | ✅ |
-| 3.2 | Model tutarlılığı | Category, Tag modelleri eklendi | ✅ |
-| 3.3 | SEO alanları | Meta description, OpenGraph, Twitter cards, reading_time | ✅ |
-| 3.4 | Admin panel modernizasyonu | Gelişmiş fieldsets, prepopulated_fields, search | ✅ |
+| 3.1 | Blog modeli gelistirme | Slug, excerpt, kategori, tag, status, view_count | ✅ |
+| 3.2 | Model tutarliligi | Category, Tag modelleri eklendi | ✅ |
+| 3.3 | SEO alanlari | Meta description, OpenGraph, Twitter cards, reading_time | ✅ |
+| 3.4 | Admin panel modernizasyonu | Gelismis fieldsets, prepopulated_fields, search | ✅ |
 
 ---
 
-## **Faz 4: Frontend Modernizasyonu** *(Görsel)*
-> *Kullanıcı deneyimi iyileştirme*
+## **Faz 4: Frontend Modernizasyonu** *(Gorsel)*
+> *Kullanici deneyimi iyilestirme*
 
-| # | İş | Açıklama | Durum |
+| # | Is | Aciklama | Durum |
 |---|-----|----------|-------|
-| 4.1 | Bootstrap 5 upgrade | Bootstrap 4 → 5.3 CDN, jQuery opsiyonel | ✅ |
-| 4.2 | Template yapısı düzenleme | SEO blocks, clean structure | ✅ |
-| 4.3 | Dark mode desteği | CSS variables, localStorage, toggle button | ✅ |
-| 4.4 | Responsive iyileştirmeler | Bootstrap 5 responsive utilities | ✅ |
+| 4.1 | Bootstrap 5 upgrade | Bootstrap 4 -> 5.3 CDN, jQuery opsiyonel | ✅ |
+| 4.2 | Template yapisi duzenleme | SEO blocks, clean structure | ✅ |
+| 4.3 | Dark mode destegi | CSS variables, localStorage, toggle button | ✅ |
+| 4.4 | Responsive iyilestirmeler | Bootstrap 5 responsive utilities | ✅ |
 | 4.5 | Modern JS optimization | Vanilla JS, reduced vendor dependencies | ✅ |
 
 ---
 
-## **Faz 5: Özellik Geliştirmeleri** *(Fonksiyonel)*
+## **Faz 5: Ozellik Gelistirmeleri** *(Fonksiyonel)*
 > *Yeni yetenekler ekleme*
 
-| # | İş | Açıklama | Durum |
+| # | Is | Aciklama | Durum |
 |---|-----|----------|-------|
-| 5.1 | Blog zenginleştirme | Markdown desteği, kod highlight | ✅ |
-| 5.2 | Proje/Portfolio bölümü | Silinen sayfaların modern versiyonu | ✅ |
-| 5.3 | Arama fonksiyonu | Site içi arama | ✅ |
-| 5.4 | RSS feed | Blog için RSS | ✅ |
-| 5.5 | Sitemap | SEO için XML sitemap | ✅ |
+| 5.1 | Blog zenginlestirme | Markdown destegi, kod highlight | ✅ |
+| 5.2 | Proje/Portfolio bolumu | Silinen sayfalarin modern versiyonu | ✅ |
+| 5.3 | Arama fonksiyonu | Site ici arama | ✅ |
+| 5.4 | RSS feed | Blog icin RSS | ✅ |
+| 5.5 | Sitemap | SEO icin XML sitemap | ✅ |
 
 ---
 
-## **Faz 5.5: Deployment Hazırlığı** *(VDS)*
-> *Sunucu deployment için gerekli ayarlar*
+## **Faz 5.5: Deployment Hazirligi** *(VDS)*
+> *Sunucu deployment icin gerekli ayarlar*
 
-| # | İş | Açıklama | Durum |
+| # | Is | Aciklama | Durum |
 |---|-----|----------|-------|
-| 5.5.1 | AWS S3 kaldırıldı | Local storage kullanımına geçildi | ✅ |
-| 5.5.2 | Docker volume'lar | static-files, media-files volume paylaşımı | ✅ |
-| 5.5.3 | Nginx static servis | Nginx doğrudan static/media servis ediyor | ✅ |
-| 5.5.4 | Domain güncelleme | me.softdevcan.site yapılandırması | ✅ |
+| 5.5.1 | AWS S3 kaldirildi | Local storage kullanimina gecildi | ✅ |
+| 5.5.2 | Docker volume'lar | static-files, media-files volume paylasimi | ✅ |
+| 5.5.3 | Nginx static servis | Nginx dogrudan static/media servis ediyor | ✅ |
+| 5.5.4 | Domain guncelleme | me.softdevcan.site yapilandirmasi | ✅ |
 
 ---
 
 ## **Faz 6: Performance** *(Optimizasyon)*
-> *Hız ve ölçeklenebilirlik*
+> *Hiz ve olceklenebilirlik*
 
-| # | İş | Açıklama | Durum |
+| # | Is | Aciklama | Durum |
 |---|-----|----------|-------|
-| 6.1 | Redis cache | Django cache backend | ⬜ |
-| 6.2 | Database optimization | Index'ler, query optimization | ⬜ |
-| 6.3 | Static dosya optimizasyonu | Minification, CDN | ⬜ |
-| 6.4 | Image optimization | WebP, lazy loading | ⬜ |
+| 6.1 | Redis cache | Django cache backend, layout context cache, page cache | ✅ |
+| 6.2 | Database optimization | Index'ler, bulk query, select_related | ✅ |
+| 6.3 | Static dosya optimizasyonu | ManifestStaticFilesStorage, defer scripts, vendor temizligi | ✅ |
+| 6.4 | Image optimization | Lazy loading tum img tag'lerine eklendi | ✅ |
 | 6.5 | Gzip compression | Nginx seviyesinde | ✅ |
 
 ---
 
 ## **Faz 7: DevOps ve CI/CD** *(Otomasyon)*
-> *Geliştirme sürecini kolaylaştırma*
+> *Gelistirme surecini kolaylastirma*
 
-| # | İş | Açıklama | Durum |
+| # | Is | Aciklama | Durum |
 |---|-----|----------|-------|
-| 7.1 | GitHub Actions | Test ve deploy otomasyonu | ⬜ |
-| 7.2 | Pre-commit hooks | Kod kalitesi kontrolü | ⬜ |
-| 7.3 | Staging ortamı | Test deployment | ⬜ |
-| 7.4 | Monitoring | Sentry veya benzeri hata takibi | ⬜ |
-| 7.5 | Backup stratejisi | Otomatik DB backup | ⬜ |
+| 7.1 | GitHub Actions | CI pipeline (lint + test) | ✅ |
+| 7.2 | Pre-commit hooks | Ruff lint/format, trailing whitespace, YAML check | ✅ |
+| 7.3 | Dev ortami | docker-compose.dev.yml override | ✅ |
+| 7.4 | Monitoring | Django file/console logging yapilandirmasi | ✅ |
+| 7.5 | Backup stratejisi | PostgreSQL + media gunluk backup scripti | ✅ |
 
 ---
 
 ## **Faz 8: API Layer** *(Opsiyonel/Gelecek)*
-> *Mobil app veya SPA için*
+> *Mobil app veya SPA icin*
 
-| # | İş | Açıklama | Durum |
+| # | Is | Aciklama | Durum |
 |---|-----|----------|-------|
 | 8.1 | Django REST Framework | API endpoints | ⬜ |
 | 8.2 | API documentation | Swagger/OpenAPI | ⬜ |
@@ -134,35 +134,39 @@ Bu doküman, Django portfolyo ve blog uygulamasının modernizasyon sürecini ad
 
 ---
 
-## Durum Açıklamaları
+## Durum Aciklamalari
 
 - ⬜ Beklemede
-- 🔄 Devam ediyor
-- ✅ Tamamlandı
-- ❌ İptal edildi
+- ✅ Tamamlandi
 
 ---
 
 ## Notlar
 
-- Her faz tamamlandığında commit atılmalı
-- Büyük değişiklikler için branch açılmalı
-- Test coverage %80 üzerinde tutulmalı
+- Her faz tamamlandiginda commit atilmali
+- Buyuk degisiklikler icin branch acilmali
+- Test coverage %80 uzerinde tutulmali
+- Pre-commit hooks ile kod kalitesi otomatik kontrol ediliyor
+- CI pipeline (GitHub Actions) her push'da lint + test calistiriyor
 
 ---
 
 ## Changelog
 
-| Tarih | Faz | Değişiklik |
+| Tarih | Faz | Degisiklik |
 |-------|-----|------------|
-| 2026-02-02 | 5.5.x | VDS deployment hazırlığı (AWS S3 → Local storage, Docker volumes, Nginx static servis) |
-| 2026-02-02 | 5.x | Faz 5 tamamlandı (Portfolio sistemi, RSS feed, XML Sitemap) |
-| 2026-02-02 | 5.1, 5.3 | Blog özellikleri eklendi (Markdown + Pygments kod highlight, Q-based search) |
+| 2026-02-06 | 7.x | Faz 7 tamamlandi (GitHub Actions CI, pre-commit hooks, dev ortami, loglama, backup) |
+| 2026-02-06 | 6.x | Faz 6 tamamlandi (Redis cache, DB optimization, static optimization, lazy loading) |
+| 2026-02-06 | 0.4 | Test suite eklendi (core, blog, contact - 27 test) |
+| 2026-02-06 | - | Guvenlik temizligi (eski env dosyalari, AWS key'leri kaldirildi, Google Maps API key kaldirildi) |
+| 2026-02-02 | 5.5.x | VDS deployment hazirligi (AWS S3 -> Local storage, Docker volumes, Nginx static servis) |
+| 2026-02-02 | 5.x | Faz 5 tamamlandi (Portfolio sistemi, RSS feed, XML Sitemap) |
+| 2026-02-02 | 5.1, 5.3 | Blog ozellikleri eklendi (Markdown + Pygments kod highlight, Q-based search) |
 | 2026-02-02 | 4.x | Frontend modernize edildi (Bootstrap 5, Dark mode, Vanilla JS optimization) |
 | 2026-02-02 | 3.x | Blog modeli modernize edildi (Category, Tag, SEO, slug-based URLs, view tracking) |
-| 2026-02-02 | 2.x | Güvenlik katmanları eklendi (Cloudflare SSL, Nginx hardening, Django security, SECURITY.md) |
-| 2026-02-02 | 1.x | Altyapı güncelleme tamamlandı (Python 3.12, Django 5.2 LTS, PostgreSQL 16, Nginx 1.27) |
-| 2026-02-02 | 0.3 | Blog template bug'ları düzeltildi |
-| 2026-02-02 | 0.1 | Aylak kod temizliği tamamlandı |
-| 2026-02-02 | 0.2 | Git repo düzenlendi |
-| 2026-02-02 | - | Yol haritası oluşturuldu |
+| 2026-02-02 | 2.x | Guvenlik katmanlari eklendi (Cloudflare SSL, Nginx hardening, Django security, SECURITY.md) |
+| 2026-02-02 | 1.x | Altyapi guncelleme tamamlandi (Python 3.12, Django 5.2 LTS, PostgreSQL 16, Nginx 1.27) |
+| 2026-02-02 | 0.3 | Blog template bug'lari duzeltildi |
+| 2026-02-02 | 0.1 | Aylak kod temizligi tamamlandi |
+| 2026-02-02 | 0.2 | Git repo duzenlendi |
+| 2026-02-02 | - | Yol haritasi olusturuldu |

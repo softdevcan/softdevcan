@@ -54,7 +54,7 @@
             <div class="col-lg-6 mb-4">
                 <div class="card h-100 shadow-sm project-card featured">
                     {% if project.featured_image %}
-                    <img src="{{ project.featured_image.url }}" class="card-img-top" alt="{{ project.title }}" style="height: 250px; object-fit: cover;">
+                    <img src="{{ project.featured_image.url }}" class="card-img-top" alt="{{ project.title }}" style="height: 250px; object-fit: cover;" loading="lazy">
                     {% else %}
                     <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center" style="height: 250px;">
                         <i class="fa fa-code fa-4x text-white-50"></i>
@@ -114,7 +114,7 @@
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100 shadow-sm project-card">
                         {% if project.featured_image %}
-                        <img src="{{ project.featured_image.url }}" class="card-img-top" alt="{{ project.title }}" style="height: 180px; object-fit: cover;">
+                        <img src="{{ project.featured_image.url }}" class="card-img-top" alt="{{ project.title }}" style="height: 180px; object-fit: cover;" loading="lazy">
                         {% else %}
                         <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center" style="height: 180px;">
                             <i class="fa fa-code fa-3x text-white-50"></i>

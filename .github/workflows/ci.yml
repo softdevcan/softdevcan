@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install ruff
+      - run: ruff check .
+
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: test_user
+          POSTGRES_PASSWORD: test_password
+          POSTGRES_DB: test_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - name: Run tests
+        env:
+          DEBUG: 'on'
+          SECRET_KEY: 'test-secret-key-for-ci-only'
+          ALLOWED_HOSTS: 'localhost,127.0.0.1'
+          CSRF_TRUSTED_ORIGINS: 'http://localhost'
+          DATABASE_URL: 'postgres://test_user:test_password@localhost:5432/test_db'
+          EMAIL: 'test@test.com'
+          EMAIL_PASSWORD: 'test-password'
+          REDIS_URL: 'redis://localhost:6379/0'
+        run: python manage.py test --verbosity=2

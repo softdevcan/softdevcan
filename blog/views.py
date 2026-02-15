@@ -29,7 +29,11 @@ def blog_home(request):
 
 def blog_detail(request, slug):
     """Display single blog post and increment view count"""
-    post = get_object_or_404(Post, slug=slug, status='published')
+    post = get_object_or_404(
+        Post.objects.select_related('author', 'category'),
+        slug=slug,
+        status='published',
+    )
 
     # Increment view count atomically
     Post.objects.filter(pk=post.pk).update(view_count=F('view_count') + 1)

@@ -78,7 +78,7 @@
                                           placeholder="Enter Message"></textarea>
                             </div>
                         </div>
-                        <div class="col-md-12 text-right">
+                        <div class="col-md-12 text-end">
                             <button type="submit" value="submit" class="btn submit_btn">Send Message</button>
                         </div>
                     </form>
@@ -94,9 +94,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <i class="fa fa-close"></i>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <h2>Thank you</h2>
                     <p>Your message is successfully sent...</p>
                 </div>
@@ -110,9 +108,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <i class="fa fa-close"></i>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <h2>Sorry !</h2>
                     <p> Something went wrong </p>
                 </div>
@@ -127,11 +123,8 @@
 {% block extra_scripts %}
 
     <!-- contact js -->
-    <script src="{% static 'js/jquery.form.js' %}"></script>
-    <script src="{% static 'js/jquery.validate.min.js' %}"></script>
-    <script src="{% static 'js/contact.js' %}"></script>
-    <!--gmaps Js-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-    <script src="{% static 'js/gmaps.min.js' %}"></script>
+    <script src="{% static 'js/jquery.form.js' %}" defer></script>
+    <script src="{% static 'js/jquery.validate.min.js' %}" defer></script>
+    <script src="{% static 'js/contact.js' %}" defer></script>
 
 {% endblock %}

@@ -1,35 +1,35 @@
 
         <!--================Footer Area =================-->
-        <footer class="footer_area p_120">
+        <footer style="background: #1F2937; color: #E5E7EB; padding: 40px 0 20px; border-top: 1px solid #374151;">
         	<div class="container">
-        		<div class="row footer_inner">
-        			<div class="col-lg-5 col-sm-6">
-        				<aside class="f_widget ab_widget">
-        					<div class="f_title">
-        						<h3>About Me</h3>
-                                <p>{{ about_myself_footer }}</p>
-        					</div>
-        					<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-        				</aside>
+        		<div class="row align-items-center">
+        			<div class="col-lg-6 mb-3 mb-lg-0">
+                        <p class="mb-2" style="font-size: 0.95rem; line-height: 1.6; color: #D1D5DB;">
+                            {{ about_myself_footer }}
+                        </p>
+                        <p class="mb-0" style="font-size: 0.85rem; color: #9CA3AF;">
+                            &copy; <script>document.write(new Date().getFullYear());</script> Can Akyıldırım. All rights reserved.
+                        </p>
         			</div>
 
-        			<div class="col-lg-2">
-                    </div>
-
-        			<div class="col-lg-4">
-        				<aside class="f_widget social_widget">
-        					<div class="f_title">
-        						<h3>Follow Me</h3>
-        					</div>
-        					<p>Let us be social</p>
-        					<ul class="list">
+        			<div class="col-lg-6">
+                        <div class="d-flex justify-content-lg-end align-items-center">
+                            <span style="font-size: 0.9rem; color: #9CA3AF; margin-right: 15px;">Connect:</span>
+                            <ul class="list-inline mb-0">
                                 {% for social in social_medias %}
-                                    <li><a href="{{ social.link }}" target="_blank">{{ social.icon|safe }}</a></li>
+                                    <li class="list-inline-item">
+                                        <a href="{{ social.link }}"
+                                           target="_blank"
+                                           title="{{ social.get_platform_display }}"
+                                           style="color: #E5E7EB; font-size: 1.3rem; transition: all 0.3s ease; display: inline-block;"
+                                           onmouseover="this.style.color='#667eea'; this.style.transform='translateY(-2px)'"
+                                           onmouseout="this.style.color='#E5E7EB'; this.style.transform='translateY(0)'">
+                                            {{ social.get_icon|safe }}
+                                        </a>
+                                    </li>
                                 {% endfor %}
-        					</ul>
-        				</aside>
+                            </ul>
+                        </div>
         			</div>
         		</div>
         	</div>

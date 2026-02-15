@@ -67,7 +67,7 @@
                 <div class="blog_details">
                     {% if post.image %}
                     <div class="blog_image mb-4">
-                        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid">
+                        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid" loading="lazy">
                     </div>
                     {% endif %}
 
@@ -97,7 +97,7 @@
                     <div class="blog_tags mb-3">
                         <i class="fa fa-tags"></i>
                         {% for tag in post.tags.all %}
-                        <span class="badge badge-secondary">{{ tag.name }}</span>
+                        <span class="badge bg-secondary">{{ tag.name }}</span>
                         {% endfor %}
                     </div>
                     {% endif %}

@@ -1,43 +1,73 @@
 {% load static %}
 
         <!--================Header Menu Area =================-->
-        <header class="header_area">
-            <div class="main_menu">
-            	<nav class="navbar navbar-expand-lg navbar-light">
-					<div class="container box_1620">
-						<!-- Brand and toggle get grouped for better mobile display -->
-						<a class="navbar-brand logo_h" href="{% url 'index' %}"><img src="{{ header_logo.url }}" alt="" style="height: 80px;"></a>
-						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<!-- Collect the nav links, forms, and other content for toggling -->
-						<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-                            <ul class="nav navbar-nav menu_nav ml-auto">
-                                <li class="nav-item {% if request.path == '/' %}active{% endif %}">
-                                    <a class="nav-link" href="{% url 'index' %}">Home</a>
-                                </li>
-                                <li class="nav-item {% if '/portfolio' in request.path %}active{% endif %}">
-                                    <a class="nav-link" href="{% url 'portfolio' %}">Portfolio</a>
-                                </li>
-                                <li class="nav-item {% if '/blog' in request.path %}active{% endif %}">
-                                    <a class="nav-link" href="{% url 'blog_home' %}">Blog</a>
-                                </li>
-                                <li class="nav-item {% if request.path == '/contact/' %}active{% endif %}">
-                                    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-                                </li>
-                                {% for document in documents %}
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ document.file.url }}" target="_blank">
-                                <i class="fa fa-download" style="margin-right: 5px"></i> {{ document.button_text }}
+        <header style="background: #ffffff; box-shadow: 0 2px 4px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000;">
+            <nav class="navbar navbar-expand-lg navbar-light" style="padding: 0.75rem 0;">
+                <div class="container">
+                    <!-- Brand -->
+                    <a class="navbar-brand" href="{% url 'index' %}" style="display: flex; align-items: center;">
+                        <img src="{{ header_logo.url }}" alt="Logo" style="height: 50px;">
+                    </a>
+
+                    <!-- Mobile toggle -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                            style="border: 1px solid #667eea;">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <!-- Navigation Links -->
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto" style="gap: 0.5rem;">
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.path == '/' %}active{% endif %}"
+                                   href="{% url 'index' %}"
+                                   style="color: {% if request.path == '/' %}#667eea{% else %}#374151{% endif %}; font-weight: {% if request.path == '/' %}600{% else %}500{% endif %}; padding: 0.5rem 1rem; transition: all 0.3s ease;"
+                                   onmouseover="if('{% if request.path == '/' %}active{% endif %}' !== 'active') this.style.color='#667eea'"
+                                   onmouseout="if('{% if request.path == '/' %}active{% endif %}' !== 'active') this.style.color='#374151'">
+                                    Home
                                 </a>
-                                </li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-					</div>
-            	</nav>
-            </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if '/portfolio' in request.path %}active{% endif %}"
+                                   href="{% url 'portfolio' %}"
+                                   style="color: {% if '/portfolio' in request.path %}#667eea{% else %}#374151{% endif %}; font-weight: {% if '/portfolio' in request.path %}600{% else %}500{% endif %}; padding: 0.5rem 1rem; transition: all 0.3s ease;"
+                                   onmouseover="if('{% if '/portfolio' in request.path %}active{% endif %}' !== 'active') this.style.color='#667eea'"
+                                   onmouseout="if('{% if '/portfolio' in request.path %}active{% endif %}' !== 'active') this.style.color='#374151'">
+                                    Portfolio
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if '/blog' in request.path %}active{% endif %}"
+                                   href="{% url 'blog_home' %}"
+                                   style="color: {% if '/blog' in request.path %}#667eea{% else %}#374151{% endif %}; font-weight: {% if '/blog' in request.path %}600{% else %}500{% endif %}; padding: 0.5rem 1rem; transition: all 0.3s ease;"
+                                   onmouseover="if('{% if '/blog' in request.path %}active{% endif %}' !== 'active') this.style.color='#667eea'"
+                                   onmouseout="if('{% if '/blog' in request.path %}active{% endif %}' !== 'active') this.style.color='#374151'">
+                                    Blog
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}"
+                                   href="{% url 'contact' %}"
+                                   style="color: {% if request.path == '/contact/' %}#667eea{% else %}#374151{% endif %}; font-weight: {% if request.path == '/contact/' %}600{% else %}500{% endif %}; padding: 0.5rem 1rem; transition: all 0.3s ease;"
+                                   onmouseover="if('{% if request.path == '/contact/' %}active{% endif %}' !== 'active') this.style.color='#667eea'"
+                                   onmouseout="if('{% if request.path == '/contact/' %}active{% endif %}' !== 'active') this.style.color='#374151'">
+                                    Contact
+                                </a>
+                            </li>
+                            {% for document in documents %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ document.file.url }}" target="_blank"
+                                   style="color: #ffffff; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 0.5rem 1.25rem; border-radius: 25px; font-weight: 600; transition: all 0.3s ease;"
+                                   onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 8px rgba(102, 126, 234, 0.3)'"
+                                   onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                                    <i class="fa-solid fa-download me-1"></i> {{ document.button_text }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         </header>
         <!--================Header Menu Area =================-->

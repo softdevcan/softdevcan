@@ -65,15 +65,17 @@ $(document).ready(function(){
                             $(this).find(':input').attr('disabled', 'disabled');
                             $(this).find('label').css('cursor','default');
                             $('#success').fadeIn()
-                            $('.modal').modal('hide');
-		                	$('#success').modal('show');
+                            // Bootstrap 5 modal API
+                            const successModal = new bootstrap.Modal(document.getElementById('success'));
+                            successModal.show();
                         })
                     },
                     error: function() {
                         $('#contactForm').fadeTo( "slow", 1, function() {
                             $('#error').fadeIn()
-                            $('.modal').modal('hide');
-		                	$('#error').modal('show');
+                            // Bootstrap 5 modal API
+                            const errorModal = new bootstrap.Modal(document.getElementById('error'));
+                            errorModal.show();
                         })
                     }
                 })
