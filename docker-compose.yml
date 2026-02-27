@@ -49,6 +49,13 @@ services:
       - media-files:/srv/app/media:ro
     ports:
       - "8090:80"
+    networks:
+      - default
+      - nginx_network
+
+networks:
+  nginx_network:
+    external: true
 
 volumes:
   postgresql-data:
