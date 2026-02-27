@@ -4,7 +4,7 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="icon" href="{{ site_favicon.url }}" type="image/png">
+        {% if site_favicon %}<link rel="icon" href="{{ site_favicon.url }}" type="image/png">{% endif %}
         <title>{% block title %}{{ site_title }}{% endblock %}</title>
         <meta name="keywords" content="{% block meta_keywords %}{{ site_keywords }}{% endblock %}">
         <meta name="description" content="{% block meta_description %}{{ site_description }}{% endblock %}">

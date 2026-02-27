@@ -6,7 +6,7 @@
                 <div class="container">
                     <!-- Brand -->
                     <a class="navbar-brand" href="{% url 'index' %}" style="display: flex; align-items: center;">
-                        <img src="{{ header_logo.url }}" alt="Logo" style="height: 50px;">
+                        {% if header_logo %}<img src="{{ header_logo.url }}" alt="Logo" style="height: 50px;">{% endif %}
                     </a>
 
                     <!-- Mobile toggle -->

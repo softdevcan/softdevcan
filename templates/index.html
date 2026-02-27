@@ -6,9 +6,9 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-4 text-center mb-4 mb-lg-0">
-                    <img src="{{ home_banner_image.url }}"
+                    {% if home_banner_image %}<img src="{{ home_banner_image.url }}"
                          alt="{{ home_banner_name }}"
-                         class="hero-section__image">
+                         class="hero-section__image">{% endif %}
                 </div>
                 <div class="col-lg-8">
                     <div style="max-width: 600px;">
