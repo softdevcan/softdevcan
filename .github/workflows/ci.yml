@@ -51,3 +51,20 @@ jobs:
           EMAIL_PASSWORD: 'test-password'
           REDIS_URL: 'redis://localhost:6379/0'
         run: python manage.py test --verbosity=2
+
+  deploy:
+    needs: [lint, test]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Deploy to VDS
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VDS_HOST }}
+          username: ${{ secrets.VDS_USER }}
+          key: ${{ secrets.VDS_SSH_KEY }}
+          script: |
+            cd /srv/app
+            git pull origin main
+            docker compose up -d --build
+            echo "Deploy completed at $(date)"
