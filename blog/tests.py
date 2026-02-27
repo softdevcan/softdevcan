@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.cache import cache
 from django.test import Client, TestCase
 from django.urls import reverse
 
@@ -67,6 +68,7 @@ class CategoryModelTest(TestCase):
 
 class BlogHomeViewTest(TestCase):
     def setUp(self):
+        cache.clear()
         self.client = Client()
         self.user = User.objects.create_user('testuser', 'test@test.com', 'testpass123!')
 
@@ -104,6 +106,7 @@ class BlogHomeViewTest(TestCase):
 
 class BlogDetailViewTest(TestCase):
     def setUp(self):
+        cache.clear()
         self.user = User.objects.create_user('testuser', 'test@test.com', 'testpass123!')
         self.post = Post.objects.create(
             title='Test Post', content='Content',

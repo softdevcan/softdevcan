@@ -1,4 +1,5 @@
 
+from django.core.cache import cache
 from django.core.exceptions import ValidationError
 from django.test import Client, TestCase
 from django.urls import reverse
@@ -81,6 +82,7 @@ class ProjectModelTest(TestCase):
 
 class IndexViewTest(TestCase):
     def setUp(self):
+        cache.clear()
         self.client = Client()
 
     def test_index_page_loads(self):
@@ -96,6 +98,7 @@ class IndexViewTest(TestCase):
 
 class PortfolioViewTest(TestCase):
     def setUp(self):
+        cache.clear()
         self.client = Client()
         self.category = ProjectCategory.objects.create(name='Web', slug='web')
         self.project = Project.objects.create(
@@ -130,6 +133,9 @@ class PortfolioViewTest(TestCase):
 
 
 class LayoutContextProcessorTest(TestCase):
+    def setUp(self):
+        cache.clear()
+
     def test_context_contains_site_title(self):
         GeneralSetting.objects.create(name='site_title', parameter='My Portfolio')
         response = self.client.get(reverse('index'))

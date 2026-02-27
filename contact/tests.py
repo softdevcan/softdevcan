@@ -1,5 +1,6 @@
 from unittest.mock import patch
 
+from django.core.cache import cache
 from django.test import Client, TestCase
 from django.urls import reverse
 
@@ -38,6 +39,7 @@ class ContactFormTest(TestCase):
 
 class ContactViewTest(TestCase):
     def setUp(self):
+        cache.clear()
         self.client = Client()
 
     def test_contact_page_loads(self):
