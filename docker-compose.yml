@@ -48,7 +48,7 @@ services:
       - static-files:/srv/app/staticfiles:ro
       - media-files:/srv/app/media:ro
     ports:
-      - "80:80"
+      - "8090:80"
 
 volumes:
   postgresql-data:
