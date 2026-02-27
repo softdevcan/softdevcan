@@ -1,28 +1,29 @@
+import logging
+
 from django.http import JsonResponse
 from django.shortcuts import render
 
 from contact.forms import ContactForm
 from contact.models import Message
 
-# Create your views here.
+logger = logging.getLogger(__name__)
+
 
 def contact_form(request):
     if request.POST:
-        contact_form = ContactForm(request.POST or None)
-        if contact_form.is_valid():
-            name = request.POST.get('name')
-            email = request.POST.get('email')
-            subject = request.POST.get('subject')
-            message = request.POST.get('message')
-
+        form = ContactForm(request.POST or None)
+        if form.is_valid():
             Message.objects.create(
-                name=name,
-                email=email,
-                subject=subject,
-                message=message,
+                name=form.cleaned_data['name'],
+                email=form.cleaned_data['email'],
+                subject=form.cleaned_data['subject'],
+                message=form.cleaned_data['message'],
             )
 
-            contact_form.send_mail()
+            try:
+                form.send_mail()
+            except Exception:
+                logger.exception("Failed to send contact form email")
 
             success = True
             message = 'Contact form sent successfully.'
@@ -33,11 +34,7 @@ def contact_form(request):
         success = False
         message = 'Request method is not valid.'
 
-    context = {
-        'success': success,
-        'message': message,
-    }
-    return JsonResponse(context)
+    return JsonResponse({'success': success, 'message': message})
 
 
 def contact(request):
