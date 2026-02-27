@@ -46,6 +46,7 @@ def layout(request):
                 'home_banner_description', 'about_myself_footer',
                 'about_myself_welcome',
                 'contact_email', 'contact_phone', 'contact_location',
+                'header_logo_height',
             ]
         )
     }
@@ -69,6 +70,7 @@ def layout(request):
         'contact_email': general_settings.get('contact_email', ''),
         'contact_phone': general_settings.get('contact_phone', ''),
         'contact_location': general_settings.get('contact_location', ''),
+        'header_logo_height': general_settings.get('header_logo_height', '50'),
         'header_logo': image_settings.get('header_logo', ''),
         'home_banner_image': image_settings.get('home_banner_image', ''),
         'site_favicon': image_settings.get('site_favicon', ''),
