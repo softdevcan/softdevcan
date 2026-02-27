@@ -1,12 +1,13 @@
-from datetime import date
 
 from django.core.exceptions import ValidationError
-from django.test import TestCase, Client
+from django.test import Client, TestCase
 from django.urls import reverse
 
 from core.models import (
-    GeneralSetting, ImageSetting, Skill, Experience, Education,
-    SocialMedia, Document, Project, ProjectCategory,
+    GeneralSetting,
+    Project,
+    ProjectCategory,
+    Skill,
 )
 from core.views import get_general_setting, get_image_setting
 

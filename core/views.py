@@ -1,8 +1,18 @@
 from django.core.cache import cache
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.cache import cache_page
 
-from core.models import GeneralSetting, ImageSetting, Skill, Experience, Education, SocialMedia, Document, Project, ProjectCategory
+from core.models import (
+    Document,
+    Education,
+    Experience,
+    GeneralSetting,
+    ImageSetting,
+    Project,
+    ProjectCategory,
+    Skill,
+    SocialMedia,
+)
 
 
 def get_general_setting(parameter):

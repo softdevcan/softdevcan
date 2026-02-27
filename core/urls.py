@@ -1,5 +1,6 @@
-from django.urls import path, include
-from .views import index, redirect_urls, portfolio, project_detail
+from django.urls import include, path
+
+from .views import index, portfolio, project_detail, redirect_urls
 
 urlpatterns = [
     path('', index, name='index'),

@@ -1,6 +1,6 @@
 from django import forms
 from django.conf import settings
-from django.core.mail import EmailMessage, send_mail
+from django.core.mail import EmailMessage
 
 
 class ContactForm(forms.Form):

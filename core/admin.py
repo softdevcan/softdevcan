@@ -3,7 +3,18 @@ from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 from unfold.admin import ModelAdmin
 from unfold.decorators import display
-from core.models import GeneralSetting, ImageSetting, Skill, Experience, Education, SocialMedia, Document, ProjectCategory, Project
+
+from core.models import (
+    Document,
+    Education,
+    Experience,
+    GeneralSetting,
+    ImageSetting,
+    Project,
+    ProjectCategory,
+    Skill,
+    SocialMedia,
+)
 
 
 @admin.register(GeneralSetting)

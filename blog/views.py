@@ -1,9 +1,11 @@
 # blog/views.py
 
 from django.core.paginator import Paginator
-from django.shortcuts import render, get_object_or_404
 from django.db.models import F, Q
-from .models import Post, Category
+from django.shortcuts import get_object_or_404, render
+
+from .models import Category, Post
+
 
 def blog_home(request):
     """Display published blog posts with search and category filter"""

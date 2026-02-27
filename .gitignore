@@ -163,4 +163,5 @@ media/
 logs/
 
 *.md
+!CLAUDE.md
 docs/

@@ -1,8 +1,8 @@
-from django.shortcuts import render
 from django.http import JsonResponse
-from contact.models import Message
-from contact.forms import ContactForm
+from django.shortcuts import render
 
+from contact.forms import ContactForm
+from contact.models import Message
 
 # Create your views here.
 

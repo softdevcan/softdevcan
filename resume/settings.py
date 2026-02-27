@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+
 import environ
 
 env = environ.Env(DEBUG=(bool, False))
@@ -354,7 +355,9 @@ def environment_callback(request):  # noqa: ARG001
     """
     Callback to show environment indicator in admin header
     """
-    return ["Development", "warning"]  # Can be: success, info, warning, danger
+    if DEBUG:
+        return ["Development", "warning"]
+    return ["Production", "success"]
 
 
 def dashboard_callback(request, context):  # noqa: ARG001

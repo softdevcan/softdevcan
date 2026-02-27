@@ -3,7 +3,8 @@ from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 from unfold.admin import ModelAdmin
 from unfold.decorators import display
-from .models import Post, Category, Tag
+
+from .models import Category, Post, Tag
 
 
 @admin.register(Category)
