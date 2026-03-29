@@ -296,8 +296,8 @@
 
 .back-to-top {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
+    bottom: 5rem;
+    right: 1.25rem;
     width: 44px;
     height: 44px;
     border-radius: 50%;

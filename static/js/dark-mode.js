@@ -20,9 +20,9 @@
         const icon = document.querySelector('.theme-toggle i');
         if (icon) {
             if (theme === 'dark') {
-                icon.className = 'fa fa-sun-o';
+                icon.className = 'fa-solid fa-sun';
             } else {
-                icon.className = 'fa fa-moon-o';
+                icon.className = 'fa-solid fa-moon';
             }
         }
     };
@@ -44,7 +44,7 @@
             const toggleButton = document.createElement('button');
             toggleButton.className = 'theme-toggle';
             toggleButton.setAttribute('aria-label', 'Toggle dark mode');
-            toggleButton.innerHTML = '<i class="fa fa-moon-o"></i>';
+            toggleButton.innerHTML = '<i class="fa-solid fa-moon"></i>';
             toggleButton.addEventListener('click', toggleTheme);
             document.body.appendChild(toggleButton);
         } else {
