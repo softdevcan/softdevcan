@@ -168,6 +168,72 @@
     color: inherit;
 }
 
+/* ==========================================================================
+   Code Block Wrapper (copy button + language label)
+   ========================================================================== */
+
+.code-block-wrapper {
+    position: relative;
+    margin: 1.5em 0;
+    border-radius: var(--radius-sm, 8px);
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.code-block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5em 1em;
+    background: #e8eaed;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.78em;
+}
+
+.code-block-lang {
+    color: #586069;
+    font-weight: 600;
+    text-transform: lowercase;
+    letter-spacing: 0.03em;
+}
+
+.code-copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    padding: 0.2em 0.65em;
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    border-radius: 4px;
+    font-size: 0.8em;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+    line-height: 1.4;
+}
+
+.code-copy-btn:hover {
+    background: rgba(102, 126, 234, 0.2);
+    color: #5a6fd6;
+}
+
+.code-copy-btn.copied {
+    background: rgba(34, 134, 58, 0.12);
+    color: #22863a;
+    border-color: rgba(34, 134, 58, 0.3);
+}
+
+.code-block-wrapper .highlight,
+.code-block-wrapper pre {
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+}
+
 /* Pygments Syntax Highlighting (GitHub Theme) */
 .highlight {
     background: #f6f8fa;
@@ -241,6 +307,36 @@
 /* ==========================================================================
    Dark Mode Syntax Highlighting
    ========================================================================== */
+
+[data-theme="dark"] .code-block-wrapper {
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .code-block-header {
+    background: #1e1e2e;
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .code-block-lang {
+    color: #8b949e;
+}
+
+[data-theme="dark"] .code-copy-btn {
+    background: rgba(102, 126, 234, 0.15);
+    color: #a5b4fc;
+    border-color: rgba(102, 126, 234, 0.3);
+}
+
+[data-theme="dark"] .code-copy-btn:hover {
+    background: rgba(102, 126, 234, 0.25);
+}
+
+[data-theme="dark"] .code-copy-btn.copied {
+    background: rgba(126, 231, 135, 0.12);
+    color: #7ee787;
+    border-color: rgba(126, 231, 135, 0.3);
+}
 
 [data-theme="dark"] .markdown-content pre,
 [data-theme="dark"] .highlight {
