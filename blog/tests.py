@@ -1,4 +1,3 @@
-import io
 import os
 
 from django.contrib.auth.models import User
