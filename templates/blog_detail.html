@@ -131,6 +131,21 @@ document.addEventListener('DOMContentLoaded', function () {
         headings.forEach(function (h) { observer.observe(h); });
     }
 
+    // ── Back to top ───────────────────────────────────────────────
+    var backToTop = document.getElementById('back-to-top');
+    if (backToTop) {
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 400) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        backToTop.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
     // ── Code block copy buttons ────────────────────────────────────
     document.querySelectorAll('.markdown-content .highlight, .markdown-content pre').forEach(function (block) {
         // Skip if already wrapped
@@ -184,6 +199,10 @@ document.addEventListener('DOMContentLoaded', function () {
 {% endblock %}
 
 {% block content %}
+<button class="back-to-top" id="back-to-top" title="Back to top" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+</button>
+
 <section class="py-5">
     <div class="container">
         <div class="article-layout">
