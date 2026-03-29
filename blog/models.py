@@ -150,11 +150,10 @@ class Post(AbstractModel):
             if file_changed:
                 if old_md_file and old_md_file.name:
                     old_md_file.delete(save=False)
-                self.md_file.open('rb')
-                try:
-                    self.content = self.md_file.read().decode('utf-8')
-                finally:
-                    self.md_file.close()
+                # Read content without closing the file so Django can still save it
+                self.md_file.seek(0)
+                self.content = self.md_file.read().decode('utf-8')
+                self.md_file.seek(0)
 
         # Auto-generate slug from title if not provided
         if not self.slug:
