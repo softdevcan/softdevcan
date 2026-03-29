@@ -190,7 +190,7 @@ class Skill(AbstractModel):
     class Meta:
         verbose_name = 'Skill'
         verbose_name_plural = 'Skills'
-        ordering = ('order',)
+        ordering = ('-percentage', 'name')
 
 class Experience(AbstractModel):
     company_name = models.CharField(
