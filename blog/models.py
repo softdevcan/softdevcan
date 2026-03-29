@@ -63,7 +63,7 @@ class Post(AbstractModel):
                            help_text='Auto-generated from title if left blank')
     excerpt = models.TextField(max_length=500, blank=True, verbose_name='Excerpt',
                                help_text='Short summary for listing pages and meta description')
-    content = models.TextField(verbose_name='Content')
+    content = models.TextField(verbose_name='Content', blank=True)
 
     # Media
     image = models.ImageField(
