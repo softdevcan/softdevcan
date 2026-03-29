@@ -501,12 +501,18 @@ main.flex-grow-1 {
    Blog - Article Body (Medium-style)
    -------------------------------------------------------------------------- */
 .article-body {
-    max-width: 680px;
+    max-width: 780px;
     margin: 0 auto;
     font-family: var(--font-serif);
     font-size: 1.25rem;
     line-height: 1.9;
     color: var(--text-body);
+}
+
+/* Inside article-layout grid, let the body fill the column */
+.article-layout .article-body {
+    max-width: 100%;
+    margin: 0;
 }
 
 .article-body--poem {
