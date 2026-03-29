@@ -72,6 +72,13 @@ class Post(AbstractModel):
         verbose_name='Featured Image',
         help_text='Main image for the post'
     )
+    md_file = models.FileField(
+        upload_to='blog_md/',
+        blank=True,
+        null=True,
+        verbose_name='Markdown File',
+        help_text='Upload a .md file to auto-populate content. Re-upload to update content.'
+    )
 
     # Categorization
     category = models.ForeignKey(
@@ -127,6 +134,28 @@ class Post(AbstractModel):
         return self.title
 
     def save(self, *args, **kwargs):
+        # If md_file is provided, read its content into the content field
+        if self.md_file:
+            old_md_file = None
+            if self.pk:
+                try:
+                    old_md_file = Post.objects.get(pk=self.pk).md_file
+                except Post.DoesNotExist:
+                    pass
+
+            file_changed = (
+                not old_md_file
+                or old_md_file.name != self.md_file.name
+            )
+            if file_changed:
+                if old_md_file and old_md_file.name:
+                    old_md_file.delete(save=False)
+                self.md_file.open('rb')
+                try:
+                    self.content = self.md_file.read().decode('utf-8')
+                finally:
+                    self.md_file.close()
+
         # Auto-generate slug from title if not provided
         if not self.slug:
             self.slug = slugify(self.title)

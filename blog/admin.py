@@ -80,8 +80,8 @@ class PostAdmin(ModelAdmin):
             'fields': ('title', 'slug', 'author')
         }),
         (_('Content'), {
-            'fields': ('content_type', 'excerpt', 'content', 'image'),
-            'description': 'Write your blog post content here. Markdown is supported.'
+            'fields': ('content_type', 'excerpt', 'md_file', 'content', 'image'),
+            'description': 'Upload a .md file to auto-populate content, or write content manually below.'
         }),
         (_('Categorization'), {
             'fields': ('category', 'tags'),
@@ -162,6 +162,12 @@ class PostAdmin(ModelAdmin):
         updated = queryset.update(status='draft')
         self.message_user(request, f'{updated} posts marked as draft.')
 
+    def get_readonly_fields(self, request, obj=None):
+        readonly = list(super().get_readonly_fields(request, obj))
+        if obj and obj.md_file:
+            readonly.append('content')
+        return readonly
+
     def save_model(self, request, obj, form, change):
         """Set author to current user if creating new post"""
         if not change:  # Only set author on creation
@@ -171,6 +177,14 @@ class PostAdmin(ModelAdmin):
         if obj.status == 'published' and not obj.published_date:
             from django.utils import timezone
             obj.published_date = timezone.now()
+
+        if obj.md_file and not obj.md_file.name.lower().endswith('.md'):
+            from django.contrib import messages
+            self.message_user(
+                request,
+                'Warning: Uploaded file does not have a .md extension. Content may be incorrect.',
+                level=messages.WARNING,
+            )
 
         super().save_model(request, obj, form, change)
 
