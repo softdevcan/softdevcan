@@ -169,6 +169,127 @@
 }
 
 /* ==========================================================================
+   Article Layout (TOC sidebar + content)
+   ========================================================================== */
+
+.article-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+/* TOC Sidebar */
+.toc-sidebar {
+    grid-column: 1;
+}
+
+.toc-sticky {
+    position: sticky;
+    top: 90px;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    background: var(--bg-secondary, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: var(--radius-sm, 8px);
+    padding: 1.25rem;
+}
+
+.toc-header {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary, #6b7280);
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-item {
+    margin: 0;
+}
+
+.toc-item--h3 {
+    padding-left: 0.85rem;
+}
+
+.toc-link {
+    display: block;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary, #6b7280);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    border-radius: 0 4px 4px 0;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    line-height: 1.4;
+}
+
+.toc-link:hover {
+    color: var(--brand-primary, #667eea);
+    background: rgba(102, 126, 234, 0.06);
+}
+
+.toc-link--active {
+    color: var(--brand-primary, #667eea);
+    border-left-color: var(--brand-primary, #667eea);
+    background: rgba(102, 126, 234, 0.08);
+    font-weight: 600;
+}
+
+/* Article body takes right column */
+.article-layout .article-body {
+    grid-column: 2;
+    min-width: 0;
+}
+
+/* Collapse TOC on small screens */
+@media (max-width: 991px) {
+    .article-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .toc-sidebar {
+        display: none;
+    }
+
+    .article-layout .article-body {
+        grid-column: 1;
+    }
+}
+
+/* Dark mode TOC */
+[data-theme="dark"] .toc-sticky {
+    background: var(--bg-card, #1e1e2e);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .toc-header {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .toc-link {
+    color: #8b949e;
+}
+
+[data-theme="dark"] .toc-link:hover,
+[data-theme="dark"] .toc-link--active {
+    color: #a5b4fc;
+    background: rgba(102, 126, 234, 0.12);
+}
+
+[data-theme="dark"] .toc-link--active {
+    border-left-color: #a5b4fc;
+}
+
+/* ==========================================================================
    Code Block Wrapper (copy button + language label)
    ========================================================================== */
 
