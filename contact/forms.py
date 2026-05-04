@@ -32,7 +32,7 @@ class ContactForm(forms.Form):
             <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto;">
                 <div style="background: linear-gradient(135deg, #6366f1, #8b5cf6); padding: 24px; border-radius: 12px 12px 0 0;">
                     <h2 style="color: #fff; margin: 0; font-size: 20px;">New Contact Message</h2>
-                    <p style="color: rgba(255,255,255,0.8); margin: 8px 0 0; font-size: 14px;">softdevcan.site</p>
+                    <p style="color: rgba(255,255,255,0.8); margin: 8px 0 0; font-size: 14px;">softdevcan.com</p>
                 </div>
                 <div style="background: #ffffff; padding: 24px; border: 1px solid #e5e7eb; border-top: none;">
                     <table style="width: 100%; border-collapse: collapse;">

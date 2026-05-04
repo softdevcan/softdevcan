@@ -1,7 +1,7 @@
 # softdevcan - Django Portfolio & Blog Application
 
 ## Project Overview
-- **URL:** me.softdevcan.site
+- **URL:** me.softdevcan.com
 - **Stack:** Django 5.2, Python 3.12, PostgreSQL 16, Redis 7, Gunicorn, Nginx
 - **Deployment:** Docker Compose on VDS, Cloudflare for SSL/CDN
 - **Admin Theme:** django-unfold (modern admin UI)
@@ -72,8 +72,8 @@ softdevcan/
 ```
 DEBUG=off
 SECRET_KEY=<random-string>
-ALLOWED_HOSTS=127.0.0.1,localhost,me.softdevcan.site,softdevcan.site,www.softdevcan.site
-CSRF_TRUSTED_ORIGINS=https://me.softdevcan.site,https://softdevcan.site,https://www.softdevcan.site
+ALLOWED_HOSTS=127.0.0.1,localhost,me.softdevcan.com,softdevcan.com,www.softdevcan.com
+CSRF_TRUSTED_ORIGINS=https://me.softdevcan.com,https://softdevcan.com,https://www.softdevcan.com
 ADMIN_URL=admin/              # Change to random string in production
 EMAIL=<gmail>
 EMAIL_PASSWORD=<app-password>
